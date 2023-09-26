@@ -1,0 +1,68 @@
+body {
+    overflow: hidden;
+}
+
+.homepage {
+  margin-top: 20px;
+  padding: 5rem
+  /* height: 100vh;
+  width: 100vw; */
+}
+/* .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+} */
+
+.welcome{
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+
+.welcome-message{
+    width: 40%;
+    place-items: start;
+}
+
+.welcome-message h2 {
+    font-family: Nunito, sans-serif;
+    color: #3084a4ff;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+.welcome-message p {
+    font-family: Nunito, sans-serif;
+    color: rgb(105, 105, 105);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    font-size: 20px;
+
+
+}
+
+.welcome-image{
+    place-items: end;
+}
+
+.btn {
+  background-color: #3084a4ff;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  font-family: Nunito, sans-serif;
+  transition: 0.3s
+
+}

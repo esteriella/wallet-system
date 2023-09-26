@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.registration-page {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} 
+
+.form-wrapper{
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 80%;
+    margin: auto;
+    left: 0;
+    right: 0;
+}
+.app-wrapper1 {
+    background-color: #3084a4ff;
+    width: 80%;
+    min-height: 71vh;
+    box-sizing: border-box;
+    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    margin: auto;
+    align-content: left;  
+    border-radius: 20px;
+}
+
+.app-wrapper2 {
+    background-color: #fff;
+    width: 50%;
+    min-height: 50vh;
+    padding: 30px;
+    border: 2px solid #3084a4ff;
+    box-sizing: border-box;
+    position: absolute;
+    margin: auto;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    justify-content: center;
+    align-items: center;
+}
+/* .app-wrapper3 {
+    background-image: url("./components/images/logan-isbell-F5b7_OD4IMA-unsplash.jpg");
+    background-size: cover;
+    background-position: 0%;
+    width: 50%;
+    height: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+} */
+/* .app-wrapper4 {
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    opacity: 0.3;
+    width: 50%;
+    height: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    position: absolute;
+    margin: auto;
+    right: 0;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+} */
+
+.input {
+    height: 32px;
+    font-size: 1em;
+    outline: none;
+    width: 100%;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom: 2px solid #807b7b;
+    margin-bottom: 10px;
+}
+
+.signup {
+    color: #3084a4ff;
+    text-align: center;
+    font-size: 2em;
+    margin: 5px 0px 10px 0px;
+}
+.lable{
+    color: #807b7b;
+}
+
+.fullName .email .passward {
+    margin: 20px;
+    color: #9b9797;
+    font-size: 1em;
+}
+
+.submit{
+    left: 30%;
+    position: relative;
+    height: 7vh;
+    width: 12vw;
+    /* display: flex; */
+    
+    font-size: 1em;
+    border-radius: 25px;
+    color: #ffffff;
+    /* padding: 10px 60px; */
+    background: linear-gradient(135deg, #6e45e2, #88d3ce);
+    /* box-shadow: rgb(0 0 0 / 11%) 0px 5px 5px, rgb(0 0 0 / 11%) 0px 5px 5px; */
+    /* box-shadow: -2px -2px 5px 5px #6f45e220,2px 2px 5px 5px #88d3ce1e ; */
+    /* margin: auto; */
+    border: 2px;
+    border-color: transparent;
+    cursor: pointer;
+    
+  }
+
+  .submit:hover{
+    color:#3084a4ff;
+    background: linear-gradient(#fff,#fff) padding-box,
+    linear-gradient(135deg, #6e45e2, #88d3ce) border-box;
+    border: 2px solid transparent;
+    /* border-radius: 25px; */
+  }
+
+  .error{
+    color: rgb(255, 0, 0);
+    font-size: 0.8em;
+  }

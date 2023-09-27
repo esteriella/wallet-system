@@ -14,6 +14,12 @@ const transactionSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  transactionType: {
+    type: String,
+    required: true,
+    default: 'transfer',
+    enum: ['transfer', 'deposit'],
+  },
   createdAt: {
     type: Date,
     default: new Date(),

@@ -1,0 +1,43 @@
+/*Transaction List*/
+.tranList {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.tranList table {
+	border: 2px solid #3084a4ff;
+	width: 800px;
+	height: 200px;
+}
+
+.tranList th {
+	border-bottom: 1px solid #3084a4ff;
+}
+
+.tranList td {
+	text-align: center;
+}
+
+
+/*Fund Wallet*/
+.fund-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+
+/*   Wallet-card   */
+.wallet-card {
+	display: flex;
+    flex-direction: row;
+	justify-content: space-between;
+    align-items: center;
+    padding-top: 50px;
+    min-height: 80vh;
+    background-color: hsl(0, 0%, 94%);
+}

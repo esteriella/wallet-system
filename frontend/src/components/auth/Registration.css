@@ -1,50 +1,37 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: Nunito, sans-serif;
 }
 
 .registration-page {
     width: 100%;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: 0 auto;
 } 
 
 .form-wrapper{
-    justify-content: center;
-    align-items: center;
-    align-content: center;
-    width: 80%;
-    margin: auto;
-    left: 0;
-    right: 0;
+    width: 100%;
 }
 .app-wrapper1 {
-    background-color: #3084a4ff;
-    width: 80%;
-    min-height: 71vh;
-    box-sizing: border-box;
-    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.5);
-    position: absolute;
-    margin: auto;
-    align-content: left;  
-    border-radius: 20px;
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: top;
+    justify-content: center;
+    padding: 15px;
+    background-color: #fff;
 }
 
 .app-wrapper2 {
-    background-color: #fff;
-    width: 50%;
-    min-height: 50vh;
-    padding: 30px;
-    border: 2px solid #3084a4ff;
-    box-sizing: border-box;
-    position: absolute;
-    margin: auto;
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 20px;
-    justify-content: center;
-    align-items: center;
+    width: 30%;
+    background: transparent;
+    background-color: #5a9cb6ff;
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 50px 55px 0px 55px;
+    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.7);
 }
 /* .app-wrapper3 {
     background-image: url("./components/images/logan-isbell-F5b7_OD4IMA-unsplash.jpg");
@@ -75,52 +62,60 @@
 } */
 
 .input {
-    height: 32px;
-    font-size: 1em;
-    outline: none;
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.2;
+    border: none;
+    display: block;
     width: 100%;
-    border-top-style: none;
-    border-left-style: none;
-    border-right-style: none;
-    border-bottom: 2px solid #807b7b;
-    margin-bottom: 10px;
+    height: 45px;
+    background-color: transparent;
+    padding: 0 5px;
 }
 
 .signup {
-    color: #3084a4ff;
+    display: block;
+    font-size: 30px;
+    color: #fff;
+    margin-bottom: 15px;
+    line-height: 1.2;
     text-align: center;
-    font-size: 2em;
-    margin: 5px 0px 10px 0px;
 }
 .lable{
-    color: #807b7b;
+    color: #fff;
 }
 
-.fullName .email .passward {
-    margin: 20px;
-    color: #9b9797;
-    font-size: 1em;
+.wrapper-input {
+    width: 100%;
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin-bottom: 37px;
+}
+
+.signup-btn {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 13px;
 }
 
 .submit{
-    left: 30%;
-    position: relative;
-    height: 7vh;
-    width: 12vw;
-    /* display: flex; */
-    
-    font-size: 1em;
-    border-radius: 25px;
-    color: #ffffff;
-    /* padding: 10px 60px; */
-    background: linear-gradient(135deg, #6e45e2, #88d3ce);
-    /* box-shadow: rgb(0 0 0 / 11%) 0px 5px 5px, rgb(0 0 0 / 11%) 0px 5px 5px; */
-    /* box-shadow: -2px -2px 5px 5px #6f45e220,2px 2px 5px 5px #88d3ce1e ; */
-    /* margin: auto; */
-    border: 2px;
-    border-color: transparent;
-    cursor: pointer;
-    
+    font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background: #2b454eff;
+    background: -webkit-linear-gradient(to left, #21d4fd, #b721ff);
+    background: -o-linear-gradient(to left, #21d4fd, #b721ff);
+    background: -moz-linear-gradient(to left, #21d4fd, #b721ff);
+    background: linear-gradient(to left, #21d4fd, #b721ff);
   }
 
   .submit:hover{

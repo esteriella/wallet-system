@@ -24,7 +24,7 @@ function Login() {
         <div className="wrap-login">
           <form className="login-form">
 
-            <span className="login-form-tittle">Welcome</span>
+            <span className="login-form-title">Welcome</span>
 
             <div className="wrap-input">
               <input className={email !== "" ? 'has-val login-form-input' : 'login-form-input'} type="email" value={email} onChange = {e => setEmail(e.target.value)}></input>

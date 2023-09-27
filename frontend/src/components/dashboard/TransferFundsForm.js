@@ -1,39 +1,26 @@
+// TransferFunds.js
 import React, { useState } from 'react';
-import axios from 'axios';
 
-function TransferFundsForm() {
-  const [fromWalletId, setFromWalletId] = useState('');
-  const [toWalletId, setToWalletId] = useState('');
+function TransferFundsForm () {
   const [amount, setAmount] = useState(0);
+  const [toAccount, setToAccount] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    axios.post('/transfer', { fromWalletId: fromWalletId, toWalletId: toWalletId, amount: amount })
-      .then(response => console.log(response))
-      .catch(error => console.error(error));
   };
 
   return (
-    <div>
+    <div className="transfer-fund">
       <h2>Transfer Funds</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          From Wallet ID:
-          <input type="text" value={fromWalletId} onChange={e => setFromWalletId(e.target.value)} />
-        </label>
-        <label>
-          To Wallet ID:
-          <input type="text" value={toWalletId} onChange={e => setToWalletId(e.target.value)} />
-        </label>
-        <label>
-          Amount:
-          <input type="number" value={amount} onChange={e => setAmount(e.target.value)} />
-        </label>
-        <button type="submit">Transfer</button>
+      <p>With just a few clicks, you can securely move your money where it needs to be.</p>
+      <form className="transfer-form" onSubmit={handleSubmit}>
+        <input type="number" value={amount} onChange={e => setAmount(e.target.value)} />
+        <input type="text" value={toAccount} onChange={e => setToAccount(e.target.value)} />
+        <button type="submit">Transfer Funds</button>
       </form>
     </div>
   );
-}
+};
+
 
 export default TransferFundsForm;

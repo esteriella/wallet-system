@@ -7,7 +7,7 @@ const getUser = async (req, res) => {
     const user = await User.findById(req.params.userId).select("-password");
     res.status(200).json(user);
   } catch (error) {
-    console.log(error);
+    throw new Error(error);
   }
 };
 

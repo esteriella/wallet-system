@@ -31,7 +31,7 @@ const signup = async (req, res, next) => {
     });
     next();
   } catch (error) {
-    next(error);
+    throw new Error(error);
   }
 };
 
@@ -59,7 +59,7 @@ const signin = async (req, res, next) => {
       .json({ message: "User signed in successfully", success: true });
     next();
   } catch (error) {
-    next(error);
+    throw new Error(error);
   }
 };
 

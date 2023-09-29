@@ -17,7 +17,6 @@ const transferMoney = async (req, res) => {
     await recipientWallet.save();
 
     const transaction = new Transaction({
-      user: senderWallet.user._id,
       from: senderWallet._id,
       to: recipientWallet._id,
       amount: req.body.amount,
@@ -28,6 +27,32 @@ const transferMoney = async (req, res) => {
 
     res.status(200).send({ message: "Transaction completed successfully!" });
   } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+};
+
+const getTransactions = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    
+    // Find the user's wallet
+    const userWallet = await Wallet.findOne({ user: userId });
+
+    if (!userWallet) {
+        return res.status(404).send({ message: 'Wallet not found!' });
+    }
+
+    // Find transactions involving the user's wallet
+    const transactions = await Transaction.find({
+        $or: [
+            { senderWallet: userWallet._id },
+            { recipientWallet: userWallet._id }
+        ]
+    }).populate('senderWallet').populate('recipientWallet');
+
+    res.status(200).send(transactions);
+  }
+  catch (error) {      
     res.status(500).send({ message: error.message });
   }
 };

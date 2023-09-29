@@ -36,7 +36,6 @@ const fundWallet = async (req, res) => {
     );
     
     const transfer = await Transaction.create({
-        user: userId,
         from: userWallet._id,
         to: userWallet._id,
         amount: amountToAdd,

@@ -4,9 +4,8 @@ import "./Registration.css";
 
 function Signup() {
   const [fullName, setFullName] = useState("");
-  const [grade, setGrade] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [errors, setErrors] = useState({});
@@ -19,16 +18,13 @@ function Signup() {
         "Email : " +
         email +
         " ,  " +
-        "Grade : " +
-        grade +
-        " , " +
-        "Username : " +
-        username +
+        "Phone Number : " +
+        phoneNumber +
         " , " +
         "Password : " +
         password
     );
-    setErrors(Validation(fullName, grade, email, username, password));
+    setErrors(Validation(fullName, phoneNumber, email, password));
     e.preventDefault();
   };
 
@@ -80,7 +76,7 @@ function Signup() {
                 type="phone-number"
                 name="phone-number"
                 onChange={e => {
-                  setGrade(e.target.value);
+                  setPhoneNumber(e.target.value);
                 }}
               />
               {errors.number &&
@@ -113,8 +109,6 @@ function Signup() {
             </div>
           </form>
         </div>
-        {/* <div className='app-wrapper3'></div>
-        <div className='app-wrapper4'></div> */}
       </div>
     </div>
   );

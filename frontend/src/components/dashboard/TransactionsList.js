@@ -1,6 +1,6 @@
 // TransactionList.js
 import React from "react";
-import "./Style.css"
+// import "./Style.css"
 
 // const TransactionsList = ({ transactions }) => (
 //   <ul>

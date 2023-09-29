@@ -10,7 +10,7 @@ function WalletDetails () {
   };
   console.log(userAccount);
   return(
-    <div>
+    <div className='wallet-owner'>
       <h2>Welcome, <span>{userAccount.owner}!</span></h2>
     {/* <p>Owner: {userAccount.owner}</p> */}
     <p>Account Number: {userAccount.number}</p>

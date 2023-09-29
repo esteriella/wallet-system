@@ -12,12 +12,13 @@ function TransferFundsForm () {
   return (
     <div className="transfer-fund">
       <h2>Transfer Funds</h2>
-      <p>With just a few clicks, you can securely move your money where it needs to be.</p>
+      <hr></hr>
+      <p>With just a few clicks, you can securely move your <br></br>money where it needs to be.</p>
       <form className="transfer-form" onSubmit={handleSubmit}>
-        <input type="number" value={amount} onChange={e => setAmount(e.target.value)} />
-        <input type="text" value={toAccount} onChange={e => setToAccount(e.target.value)} />
-        <button type="submit">Transfer Funds</button>
+        <label>Enter Amount</label><input type="number" value={amount} onChange={e => setAmount(e.target.value)} />
+        <label>Send To</label><input type="text" value={toAccount} onChange={e => setToAccount(e.target.value)} />
       </form>
+      <button type="submit">Transfer Funds</button>
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./HomePage.css";
 import earnreward from "../../Assets/earn-reward.png";
 
 const HomePage = () => {
@@ -17,9 +16,8 @@ const HomePage = () => {
               where every dollar is at your fingertips.
             </p>
             <Link to="/login" className="btn">Get Started</Link>
-            {/* <button className="btn">Get Started</button> */}
           </div>
-          <img src={earnreward} alt="Logo" className="wecome-image" />
+          <img src={earnreward} alt="Logo" className="welcome-image" />
         </div>
       </div>
     </div>

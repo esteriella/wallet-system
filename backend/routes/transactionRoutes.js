@@ -1,8 +1,7 @@
-const { signup, signin } = require("../controllers/AuthController");
+const { transferMoney } = require("../controllers/TransactionController");
 const userVerification = require("../middleware/authentication");
 const router = require("express").Router();
 
-router.post("/signup", signup);
-router.post("/signin", signin);
+router.post("/transfer", userVerification, transferMoney);
 
 module.exports = router;

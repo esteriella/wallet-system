@@ -2,12 +2,12 @@ const User = require("../models/User");
 const { createSecretToken } = require("../utils/Secrets");
 const bcrypt = require("bcrypt");
 
-const Signup = async (req, res, next) => {
+const signup = async (req, res, next) => {
   try {
     const { firstName, lastName, phone, email, password } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.json({ message: "User already exists" });
+      return res.status(409).json({ message: "User already exists" });
     }
     const user = await User.create({
       firstName,
@@ -16,23 +16,26 @@ const Signup = async (req, res, next) => {
       email,
       password
     });
-    const token = createSecretToken(user._id);
-    res.cookie("token", token, {
-      withCredentials: true,
-      httpOnly: false
+
+    const wallet = new Wallet({
+        user: user._id
     });
+
+    await wallet.save(); 
+
     res.status(201).json({
-      message: "User created and signed in successfully",
+      message: "User and wallet created successfully",
       success: true,
-      user
+      user,
+      wallet
     });
     next();
   } catch (error) {
-    console.error(error);
+    next(error);
   }
 };
 
-const Signin = async (req, res, next) => {
+const signin = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
@@ -56,11 +59,11 @@ const Signin = async (req, res, next) => {
       .json({ message: "User signed in successfully", success: true });
     next();
   } catch (error) {
-    console.error(error);
+    next(error);
   }
 };
 
 module.exports = {
-  Signup,
-  Signin
+  signup,
+  signin
 };

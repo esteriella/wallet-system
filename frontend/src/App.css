@@ -1,36 +1,10 @@
  .App {
   width: 100%;
-  min-height: 100vh;
+  height: 100vh;
   background-color: white;
+  /* padding: 10px; */
+  padding: 0 4rem 2rem 4rem
 }
-
-/* .neon_blue {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  width: 40%;
-  height: 40em;
-  background-image: url('../src/Assets/Earn Reward.png');
-  background-repeat: no-repeat;
-  background-position: cover;
-  background-size: 100% 100%;
-  
-  z-index: 999;
-}  */
-
-/* .yellow_circle {
-  position: absolute;
-  bottom: 270px;
-  right: 0.5px;
-  left: 950px;
-  width: 30em;
-  height: 30em;
-  background-image: url('../src/Assets/yellow-circle.png');
-  background-repeat: no-repeat;
-  background-position: top;
-  background-size: 100% 100%;
-  opacity: 0.5;
-} */
 
 /* .App-logo {
   height: 40vmin;
@@ -67,8 +41,145 @@
   }
 }  */
 
+/* Home Page */
+.homepage {
+  margin-top: 20px;
+  padding: 1.5rem
+}
 
-.backgrounds {
-  background-image: url('../src/Assets/black.jpg');
-  background-repeat: repeat;
+.welcome{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome-message{
+    width: 40%;
+    place-items: start;
+}
+
+.welcome-message h2 {
+    font-family: Nunito, sans-serif;
+    color: #3084a4ff;
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+.welcome-message p {
+    font-family: Nunito, sans-serif;
+    color: rgb(105, 105, 105);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    font-size: 20px;
+
+
+}
+
+.welcome-image{
+    place-items: end;
+}
+
+.welcome .btn {
+  background-color: #3084a4ff;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: bold;
+  font-family: Nunito, sans-serif;
+  transition: 0.3s
+
+}
+
+/* About */
+
+.about{
+  min-height: 80vh;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+}
+
+.about h2{
+  margin-top: 20px;
+  font-size: 20px;
+}
+
+/* Navbar */
+.logo-container {
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 65px;
+  width: 65px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #3084a4ff;
+  margin: 0;
+  padding: 0; 
+  text-decoration: none;
+}
+
+.navbar {
+  display: flex;
+  padding-top: 10px;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Navigation links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li {
+  margin: 0 10px;
+}
+
+.nav-link {
+  color: rgb(105, 105, 105);
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #3084a4ff;
+}
+
+
+/* Footer */
+.footer {
+	display: flex;
+  padding: 0rem 1.5rem 0rem 1.5rem;
+  justify-content: space-between;
+}
+
+.estie-wallet {
+  font-size: 18px;
+  padding: 0; 
+  text-decoration: none;
+}
+
+.footer span{
+  font-size: 18px;
 }

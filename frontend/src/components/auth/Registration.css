@@ -33,33 +33,6 @@
     padding: 50px 55px 0px 55px;
     box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.7);
 }
-/* .app-wrapper3 {
-    background-image: url("./components/images/logan-isbell-F5b7_OD4IMA-unsplash.jpg");
-    background-size: cover;
-    background-position: 0%;
-    width: 50%;
-    height: 100%;
-    padding: 30px;
-    box-sizing: border-box;
-    position: absolute;
-    margin: auto;
-    right: 0;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-} */
-/* .app-wrapper4 {
-    background: linear-gradient(135deg, #6e45e2, #88d3ce);
-    opacity: 0.3;
-    width: 50%;
-    height: 100%;
-    padding: 30px;
-    box-sizing: border-box;
-    position: absolute;
-    margin: auto;
-    right: 0;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-} */
 
 .input {
     font-size: 15px;

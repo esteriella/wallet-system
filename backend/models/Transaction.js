@@ -1,9 +1,14 @@
 const mongoose = require('mongoose');
 const transactionSchema = new mongoose.Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  },
   from: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Wallet',
-    required: true
+    required: fa
   },
   to: {
     type: mongoose.Schema.Types.ObjectId,

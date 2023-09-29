@@ -15,10 +15,7 @@ module.exports.userVerification = (req, res) => {
       if (user)
         return res.json({
           status: true,
-          user: user.username,
-          userId: user._id,
-          userFName: user.firstName,
-          userLName: user.lastName
+          user: user._id
         });
       else return res.json({ status: false });
     }

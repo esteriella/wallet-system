@@ -58,5 +58,6 @@ const getTransactions = async (req, res) => {
 };
 
 module.exports = { 
-    transferMoney
+    transferMoney,
+    getTransactions
  };

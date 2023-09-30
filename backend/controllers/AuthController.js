@@ -26,9 +26,7 @@ const signup = async (req, res, next) => {
 
     res.status(201).json({
       message: "User and wallet created successfully",
-      success: true,
-      user,
-      wallet
+      success: true
     });
     next();
   } catch (error) {

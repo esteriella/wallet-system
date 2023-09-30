@@ -31,7 +31,7 @@ const updateUser = async (req, res) => {
       req.params.userId,
       updatedFields,
       { new: true }
-    );
+    ).select("-password");
 
     if (!user) {
       // Handle the case where the user is not found

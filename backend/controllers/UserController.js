@@ -37,7 +37,9 @@ const updatePassword = async (req, res) => {
       { password: hashedPassword },
       { new: true }
     );
-    res.status(200).send(user);
+    res
+      .status(201)
+      .json({ message: "Password updated successfully", success: true });
   } catch (error) {
     throw new Error(error);
   }

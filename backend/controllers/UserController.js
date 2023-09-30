@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const getUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.userId).select("-password");
-    res.status(200).json(user);
+    res.status(200).send(user);
   } catch (error) {
     throw new Error(error);
   }
@@ -22,7 +22,7 @@ const updateUser = async (req, res) => {
       },
       { new: true }
     );
-    res.status(200).json(user);
+    res.status(200).send(user);
   } catch (error) {
     throw new Error(error);
   }
@@ -37,7 +37,7 @@ const updatePassword = async (req, res) => {
       { password: hashedPassword },
       { new: true }
     );
-    res.status(200).json(user);
+    res.status(200).send(user);
   } catch (error) {
     throw new Error(error);
   }

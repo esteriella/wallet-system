@@ -7,7 +7,6 @@ const authRouter = require("./routes/authRoutes");
 const userRouter = require("./routes/userRoutes");
 const walletRouter = require("./routes/walletRoutes");
 const transRouter = require("./routes/transactionRoutes");
-const { errorHandler } = require('./middlewares/errors');
 const { MONGO_DB, PORT } = process.env;
 const app = express();
 
@@ -33,7 +32,6 @@ app.use(
 
 app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use(errorHandler);
 app.use("/api", authRouter);
 app.use("/api", userRouter);
 app.use("/api", walletRouter);

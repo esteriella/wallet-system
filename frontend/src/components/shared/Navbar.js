@@ -15,12 +15,12 @@ function Navbar() {
       <section>
         <ul className="nav-links">
           <li>
-            <Link to="/login" className="nav-link">
+            <Link to="/signin" className="nav-link">
               Sign in
             </Link>
           </li>
           <li>
-            <Link to="/registration" className="nav-link">
+            <Link to="/signup" className="nav-link">
               Sign Up
             </Link>
           </li>

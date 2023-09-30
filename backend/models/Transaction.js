@@ -3,7 +3,7 @@ const transactionSchema = new mongoose.Schema({
   from: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Wallet',
-    required: fa
+    required: true
   },
   to: {
     type: mongoose.Schema.Types.ObjectId,

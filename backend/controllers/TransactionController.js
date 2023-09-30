@@ -1,5 +1,5 @@
 const Transaction = require("../models/Transaction");
-const Wallet = reequire("../models/Wallet");
+const Wallet = require("../models/Wallet");
 
 const transferMoney = async (req, res) => {
   try {

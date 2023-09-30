@@ -37,7 +37,7 @@ app.use(
 );
 
 app.use(express.json({ limit: '20mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.urlencoded({ limit: '20mb', extended: true }));
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use("/api/wallet", walletRouter);

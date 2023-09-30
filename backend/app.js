@@ -39,7 +39,7 @@ app.use(cors());
 
 app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use("/api", authRouter);
-app.use("/api", userRouter);
-app.use("/api", walletRouter);
-app.use("/api", transRouter);
+app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
+app.use("/api/wallet", walletRouter);
+app.use("/api/transaction", transRouter);

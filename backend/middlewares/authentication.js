@@ -1,7 +1,7 @@
 const User = require("../models/User");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-import { createError } from "./errors.js";
+const { createError } = require("./errors.js");
 
 const verifyToken = (req, res, next) => {
   const token = req.cookies.access_token;

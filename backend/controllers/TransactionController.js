@@ -43,10 +43,10 @@ const getTransactions = async (req, res) => {
     // Find transactions involving the user's wallet
     const transactions = await Transaction.find({
         $or: [
-            { senderWallet: userWallet._id },
-            { recipientWallet: userWallet._id }
+            { from: userWallet._id },
+            { to: userWallet._id }
         ]
-    }).populate('senderWallet').populate('recipientWallet');
+    }).populate('from').populate('to');
 
     res.status(200).send(transactions);
   }

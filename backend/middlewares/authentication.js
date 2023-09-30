@@ -39,7 +39,7 @@ const verifyUser = (req, res, next) => {
   verifyToken(req, res, (err) => {
     if (err) return next(err);
 
-    if (req.user.id === req.params.id) {
+    if (req.user.id === req.params.userId) {
       next();
     } else {
       return next(createError(403, "You are not authorized! User"));

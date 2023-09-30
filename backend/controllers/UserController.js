@@ -1,4 +1,4 @@
-const userVerification = require("../middleware/authentication");
+const userVerification = require("../middlewares/authentication");
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 

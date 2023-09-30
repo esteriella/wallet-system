@@ -16,14 +16,12 @@ const transferMoney = async (req, res) => {
     await senderWallet.save();
     await recipientWallet.save();
 
-    const transaction = new Transaction({
+    const transaction = await Transaction.create({
       from: senderWallet._id,
       to: recipientWallet._id,
       amount: req.body.amount,
       transactionType: "transfer"
     });
-
-    await transaction.save();
 
     res.status(200).send({ message: "Transaction completed successfully!" });
   } catch (error) {

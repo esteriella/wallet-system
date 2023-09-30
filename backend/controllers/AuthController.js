@@ -19,11 +19,9 @@ const signup = async (req, res, next) => {
       password
     });
 
-    const wallet = new Wallet({
+    const wallet = await Wallet.create({
       user: user._id
     });
-
-    await wallet.save();
 
     res.status(201).json({
       message: "User and wallet created successfully",

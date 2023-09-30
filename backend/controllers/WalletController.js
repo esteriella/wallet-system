@@ -32,16 +32,15 @@ const fundWallet = async (req, res) => {
     const updatedWallet = await Wallet.findByIdAndUpdate(
       userWallet._id,
       { $inc: { balance: amountToAdd } },
-      { new: true } 
+      { new: true }
     );
-    
+
     const transfer = await Transaction.create({
-        from: userWallet._id,
-        to: userWallet._id,
-        amount: amountToAdd,
-        transactionType: 'deposit',
-      })
-      await transfer.save();
+      from: userWallet._id,
+      to: userWallet._id,
+      amount: amountToAdd,
+      transactionType: "deposit"
+    });
 
     res.status(200).send(updatedWallet);
   } catch (error) {

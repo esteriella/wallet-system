@@ -2,7 +2,7 @@ const { transferMoney, getTransactions } = require("../controllers/TransactionCo
 const userVerification = require("../middlewares/authentication");
 const transRouter = require("express").Router();
 
-transRouter.post("/transfer", userVerification, transferMoney);
-transRouter.get("/transactions/:userId", userVerification, getTransactions);
+transRouter.post("/transfer", transferMoney);
+transRouter.get("/transactions/:userId", getTransactions);
 
 module.exports = transRouter;

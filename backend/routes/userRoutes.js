@@ -3,7 +3,7 @@ const userVerification = require("../middlewares/authentication");
 const userRouter = require("express").Router();
 
 userRouter.get('/user/details/:userId', getUser);
-userRouter.put('/user/update/:userId', userVerification, updateUser);
-userRouter.put('/user/updatepassword/:userId', userVerification, updatePassword);
+userRouter.put('/user/update/:userId', updateUser);
+userRouter.put('/user/updatepassword/:userId', updatePassword);
 
 module.exports = userRouter;

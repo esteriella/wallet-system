@@ -1,8 +1,8 @@
 const { transferMoney, getTransactions } = require("../controllers/TransactionController");
-const userVerification = require("../middleware/authentication");
-const router = require("express").Router();
+const userVerification = require("../middlewares/authentication");
+const transRouter = require("express").Router();
 
-router.post("/transfer", userVerification, transferMoney);
-router.get("/transactions/:userId", userVerification, getTransactions);
+transRouter.post("/transfer", userVerification, transferMoney);
+transRouter.get("/transactions/:userId", userVerification, getTransactions);
 
-module.exports = router;
+module.exports = transRouter;

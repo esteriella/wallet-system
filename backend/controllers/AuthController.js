@@ -6,9 +6,11 @@ const signup = async (req, res, next) => {
   try {
     const { firstName, lastName, phone, email, password } = req.body;
     const existingUser = await User.findOne({ email });
+
     if (existingUser) {
       return res.status(409).json({ message: "User already exists" });
     }
+    
     const user = await User.create({
       firstName,
       lastName,
@@ -18,7 +20,7 @@ const signup = async (req, res, next) => {
     });
 
     const wallet = new Wallet({
-        user: user._id
+      user: user._id
     });
 
     await wallet.save(); 

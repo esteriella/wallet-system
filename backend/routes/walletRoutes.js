@@ -1,8 +1,8 @@
 const{ getWallet, fundWallet } = require('../controllers/WalletController');
-const userVerification = require("../middleware/authentication");
-const router = require("express").Router();
+const userVerification = require("../middlewares/authentication");
+const walletRouter = require("express").Router();
 
-router.get('/wallet/details/:userId', userVerification, getWallet);
-router.put('/wallet/fund/:userId', userVerification, fundWallet);
+walletRouter.get('/wallet/details/:userId', userVerification, getWallet);
+walletRouter.put('/wallet/fund/:userId', userVerification, fundWallet);
 
-module.exports = router;
+module.exports = walletRouter;

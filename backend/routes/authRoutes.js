@@ -1,8 +1,8 @@
 const { signup, signin } = require("../controllers/AuthController");
-const userVerification = require("../middleware/authentication");
-const router = require("express").Router();
+const userVerification = require("../middlewares/authentication");
+const authRouter = require("express").Router();
 
-router.post("/signup", signup);
-router.post("/signin", signin);
+authRouter.post("/signup", signup);
+authRouter.post("/signin", signin);
 
-module.exports = router;
+module.exports = authRouter;

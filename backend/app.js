@@ -8,7 +8,7 @@ const authRouter = require("./routes/authRoutes");
 const userRouter = require("./routes/userRoutes");
 const walletRouter = require("./routes/walletRoutes");
 const transRouter = require("./routes/transactionRoutes");
-const { errorHandler } = require('./middleware/errors');
+const { errorHandler } = require('./middlewares/errors');
 const { MONGO_DB, PORT } = process.env;
 const app = express();
 

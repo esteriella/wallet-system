@@ -46,7 +46,7 @@ const getTransactions = async (req, res) => {
             { from: userWallet._id },
             { to: userWallet._id }
         ]
-    }).populate('from').populate('to');
+    });
 
     res.status(200).send(transactions);
   }

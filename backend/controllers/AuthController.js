@@ -10,7 +10,7 @@ const signup = async (req, res, next) => {
     if (existingUser) {
       return res.status(409).json({ message: "User already exists" });
     }
-    
+
     const user = await User.create({
       firstName,
       lastName,
@@ -23,7 +23,7 @@ const signup = async (req, res, next) => {
       user: user._id
     });
 
-    await wallet.save(); 
+    await wallet.save();
 
     res.status(201).json({
       message: "User and wallet created successfully",
@@ -51,6 +51,7 @@ const signin = async (req, res, next) => {
     if (!auth) {
       return res.json({ message: "Incorrect password or email" });
     }
+    const userId = user._id;
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
       expires: new Date(
@@ -60,7 +61,11 @@ const signin = async (req, res, next) => {
     });
     res
       .status(201)
-      .json({ message: "User signed in successfully", success: true });
+      .json({
+        message: "User signed in successfully", 
+        success: true,
+        userId
+      });
     next();
   } catch (error) {
     throw new Error(error);

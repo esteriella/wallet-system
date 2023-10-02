@@ -13,7 +13,7 @@ const getWallet = async (req, res) => {
 
     res.status(200).send(wallet);
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    res.status(500).send({message: error.message});
   }
 };
 
@@ -37,8 +37,8 @@ const fundWallet = async (req, res) => {
     );
 
     const transfer = await Transaction.create({
-      from: userWallet._id,
-      to: userWallet._id,
+      from: userId,
+      to: userId,
       amount: amountToAdd,
       transactionType: "deposit"
     });
@@ -51,7 +51,7 @@ const fundWallet = async (req, res) => {
         updatedWallet
       });
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    res.status(500).send({message: error.message});
   }
 };
 

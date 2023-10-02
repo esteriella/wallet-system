@@ -10,8 +10,8 @@ const getWallet = async (req, res) => {
     if (!wallet) {
       return res.status(404).send({ message: "Wallet not found!" });
     }
-
-    res.status(200).send(wallet);
+    const balance = wallet.balance
+    res.status(200).send(balance);
   } catch (error) {
     res.status(500).send({message: error.message});
   }
@@ -35,7 +35,8 @@ const fundWallet = async (req, res) => {
       { $inc: { balance: amountToAdd } },
       { new: true }
     );
-
+    
+    const balance = updatedWallet.balance;
     const transfer = await Transaction.create({
       from: userId,
       to: userId,
@@ -48,7 +49,7 @@ const fundWallet = async (req, res) => {
       .json({
         message: "Funded account successfully",
         success: true,
-        updatedWallet
+        balance
       });
   } catch (error) {
     res.status(500).send({message: error.message});

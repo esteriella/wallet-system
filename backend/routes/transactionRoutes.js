@@ -4,6 +4,6 @@ const transRouter = require("express").Router();
 const { verifyToken, verifyUser } = require('../middlewares/authentication');
 
 transRouter.post("/transfer/:userId",  verifyToken, verifyUser, transferMoney);
-transRouter.get("/transactions/:userId",  verifyToken, verifyUser, getTransactions);
+transRouter.get("/history/:userId",  verifyToken, verifyUser, getTransactions);
 
 module.exports = transRouter;

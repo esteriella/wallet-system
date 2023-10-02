@@ -3,11 +3,15 @@ const Wallet = require("../models/Wallet");
 
 const transferMoney = async (req, res) => {
   try {
-    const senderWallet = await Wallet.findById(req.body.from);
-    const recipientWallet = await Wallet.findById(req.body.to);
+    const senderWallet = await Wallet.findOne({user: req.params.userId});
+    const recipientWallet = await Wallet.findOne({user: req.body.to});
+
+    if(senderWallet._id === recipientWallet._id){
+      return res.status(400).json({ message: "You can't transfer to yourself!", success: false });
+    }
 
     if (senderWallet.balance < req.body.amount) {
-      return res.status(400).send({ message: "Insufficient balance!" });
+      return res.status(400).json({ message: "Insufficient balance!", success: false });
     }
 
     senderWallet.balance -= req.body.amount;
@@ -23,9 +27,9 @@ const transferMoney = async (req, res) => {
       transactionType: "transfer"
     });
 
-    res.status(200).send({ message: "Transaction completed successfully!" });
+    res.status(200).json({ message: "Transaction completed successfully!", success: true });
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    res.status(500).json({ message: error.message, success: false });
   }
 };
 
@@ -37,7 +41,7 @@ const getTransactions = async (req, res) => {
     const userWallet = await Wallet.findOne({ user: userId });
 
     if (!userWallet) {
-        return res.status(404).send({ message: 'Wallet not found!' });
+        return res.status(404).json({ message: 'Wallet not found!', success: false });
     }
 
     // Find transactions involving the user's wallet
@@ -51,7 +55,7 @@ const getTransactions = async (req, res) => {
     res.status(200).send(transactions);
   }
   catch (error) {      
-    res.status(500).send({ message: error.message });
+    res.status(500).false({ message: error.message, success: false });
   }
 };
 

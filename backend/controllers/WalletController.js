@@ -11,7 +11,7 @@ const getWallet = async (req, res) => {
       return res.status(404).send({ message: "Wallet not found!" });
     }
 
-    res.status(200).send(wallet);
+    res.status(200).send(wallet.balance);
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
@@ -43,7 +43,13 @@ const fundWallet = async (req, res) => {
       transactionType: "deposit"
     });
 
-    res.status(200).send(updatedWallet);
+    res
+      .status(200)
+      .json({
+        message: "Funded account successfully",
+        success: true,
+        updatedWallet
+      });
   } catch (error) {
     res.status(500).send({ message: error.message });
   }

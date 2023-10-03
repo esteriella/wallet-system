@@ -2,8 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/authRoutes");
 const userRouter = require("./routes/userRoutes");
 const walletRouter = require("./routes/walletRoutes");
@@ -26,10 +24,7 @@ app.listen(APP_PORT, () => {
   console.log(`Server is listening on port ${APP_PORT}`);
 });
 
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.set("trust proxy", 1);
 
 app.use(
   cors({

@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+# Estie Wallet System - Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to the Estie Wallet System React application! This application allows users to manage their wallets, perform transactions, and update their profiles. It provides a user-friendly interface for interacting with the [Estie Wallet System API](https://github.com/esteriella/wallet-system/tree/main/backend).
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **User Authentication:** Sign up and sign in securely to access your wallet.
+- **Profile Management:** Update your user profile information and change your password.
+- **Wallet Balance:** View your wallet balance.
+- **Transaction History:** Review your transaction history, including transfers and deposits.
+- **Transfer Money:** Send money to other users with ease.
+- **Fund Wallet:** Add funds to your wallet for future transactions.
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Before you begin, ensure you have met the following requirements:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Node.js and npm installed on your machine.
+- Access to the [Estie Wallet System API](https://github.com/esteriella/wallet-system/tree/main/backend). Ensure the API is running and accessible.
 
-### `npm test`
+## Getting Started
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To get started with the Estie Wallet System React App, follow these steps:
 
-### `npm run build`
+1. Clone this repository to your local machine:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```bash
+   git clone https://github.com/esteriella/wallet-system.git
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Navigate to the project directory:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   cd frontend
+   ```
 
-### `npm run eject`
+3. Install the project dependencies:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   npm install
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Create a `.env` file in the project root and configure it with the following environment variables:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```
+   REACT_APP_API=<API_BASE_URL>
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+   Replace `<REACT_APP_API>` with the base URL of your Estie Wallet System API.
 
-## Learn More
+5. Start the React development server:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```bash
+   npm start
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   This will start the application locally and open it in your default web browser.
 
-### Code Splitting
+## Usage
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- Sign up for a new account if you are a new user.
+- Sign in with your credentials if you already have an account.
+- Update your profile information and change your password as needed.
+- View your wallet balance and transaction history on the dashboard.
+- Send money to other users by entering their user ID and the amount you want to transfer.
+- Add funds to your wallet by specifying the amount.
 
-### Analyzing the Bundle Size
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+To deploy the Estie Wallet System React App to a production environment, you can follow these general steps:
 
-### Making a Progressive Web App
+1. Build the application:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+   ```bash
+   npm run build
+   ```
 
-### Advanced Configuration
+2. Deploy the build artifacts to your web server or hosting platform of choice.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+3. Ensure that the `.env` file is configured with the correct API base URL for the production environment.
 
-### Deployment
+4. Set up your web server or hosting environment to serve the React app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Contributing
 
-### `npm run build` fails to minify
+Contributions to the Estie Wallet System React App are welcome! If you have suggestions, bug reports, or feature requests, please submit an issue or create a pull request.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/esteriella/wallet-system/blob/main/LICENSE) file for details.
+
+## Contact
+
+If you have any questions or need assistance, you can reach me at [Opeyemi Esther Agbaje](https://github.com/esteriella).
+
+Happy wallet management with Estie Wallet System!

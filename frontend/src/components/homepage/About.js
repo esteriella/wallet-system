@@ -3,11 +3,12 @@ export default function About(){
         <div className="about">
             <h2>About</h2>
             <p>
+                Welcome to Estie Wallet System! We're excited to have you explore and test our wallet management system. We recommend using dummy information when testing out the application.
             </p>
             <h2>Disclaimer</h2>
-            <p></p>
-            <h2>Privacy Policy</h2>
-            <p></p>
+            <p><strong>This is Not a Real Wallet</strong></p>
+            <p>Estie Wallet System is a web application created for testing and educational purposes only. It is <strong>not a real financial institution</strong>, and the funds, transactions, and information used within this system are entirely simulated. Any actions taken in this application have no real-world financial consequences.
+            </p>
         </div>
     )
 }

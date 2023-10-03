@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  // useParams,
   useNavigate,
   Link
 } from "react-router-dom";
@@ -12,7 +11,6 @@ import Loader from "../shared/Loader";
 const api = process.env.REACT_APP_API;
 
 export default function UpdateProfile() {
-  // const { userId } = useParams();
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
   const [loadingState, setLoadingState] = useState(false);
@@ -43,11 +41,6 @@ export default function UpdateProfile() {
   const handleSuccess = msg =>
     toast.success(msg, {
       position: "bottom-left"
-    });
-
-  const handleInfo = msg =>
-    toast.info(msg, {
-      position: "top-right"
     });
 
     useEffect(() => {
@@ -110,7 +103,6 @@ export default function UpdateProfile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    handleInfo("Please wait while we update your profile!");
     try {
       const response = await axios.put(
         `${api}/user/update/${userId}`,

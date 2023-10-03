@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import earnreward from "../../Assets/earn-reward.png";
 
 const HomePage = () => {  
-  // const userId = localStorage.getItem("userId"); 
   
   const token = localStorage.getItem("token");
 
@@ -23,7 +22,6 @@ const HomePage = () => {
             </p>
             <>
             {isTokenPresent ? 
-              // <Link to={`/dashboard/${userId}`} className="btn">Dashboard</Link>
               <Link to='/dashboard' className="btn">Dashboard</Link>
               : 
               <Link to="/signup" className="btn">Get Started</Link>

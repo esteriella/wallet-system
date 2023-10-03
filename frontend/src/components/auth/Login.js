@@ -36,15 +36,8 @@ function Login() {
       position: "bottom-left"
     });
 
-  const handleInfo = msg =>
-    toast.info(msg, {
-      position: "top-right"
-    });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    handleInfo("Please wait while we sign you in!");
     try {
       const { data } = await axios.post(
         `${api}/auth/signin`,
@@ -69,8 +62,7 @@ function Login() {
         localStorage.setItem("userId", userId);
         localStorage.setItem("token", token);
         handleSuccess(message);
-        setTimeout(() => {
-          // navigate(`/dashboard/${userId}`);          
+        setTimeout(() => {      
           navigate('/dashboard');
         }, 5000);
       } else {

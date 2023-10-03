@@ -1,6 +1,5 @@
 import { useState } from "react";
 import {
-  // useParams,
   useNavigate
 } from "react-router-dom";
 import axios from "axios";
@@ -9,7 +8,6 @@ import { toast } from "react-toastify";
 const api = process.env.REACT_APP_API;
 
 function FundWallet() {
-  // const { userId } = useParams();
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
   const [amountToAdd, setAmount] = useState(null);
@@ -30,14 +28,8 @@ function FundWallet() {
       position: "bottom-left"
     });
 
-  const handleInfo = msg =>
-    toast.info(msg, {
-      position: "top-right"
-    });
-
   const handleSubmit = async e => {
     e.preventDefault();
-    handleInfo("Please wait for transaction to complete!");
     try {
       const response = await axios.put(
         `${api}/wallet/fund/${userId}`,
@@ -57,7 +49,6 @@ function FundWallet() {
       if (response.data.success) {
         handleSuccess(response.data.message);
         setTimeout(() => {
-          // navigate(`/dashboard/${userId}`, { replace: true });
           navigate("/dashboard", { replace: true });
         }, 5000);
       } else {

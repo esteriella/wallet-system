@@ -6,7 +6,6 @@ function Navbar() {
   const location = useLocation();
 
   
-  // const userId = localStorage.getItem("userId");
 
   const logout = () => {
     localStorage.removeItem("userId");
@@ -16,7 +15,6 @@ function Navbar() {
 
   const token = localStorage.getItem("token");
 
-  // const isTokenPresent = token ? true : false;
 
   const isTokenPresent = !!token;
 
@@ -40,9 +38,6 @@ function Navbar() {
             {!isDashboardPage ? (
               <ul className="nav-links">
                 <li>
-                  {/* <Link to={`/dashboard/${userId}`} className="nav-link">
-                    Dashboard
-                  </Link> */}
                   <Link to='/dashboard' className="nav-link">
                     Dashboard
                   </Link>

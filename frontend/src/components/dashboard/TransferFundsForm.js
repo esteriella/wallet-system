@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { 
-  // useParams, 
   useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -8,7 +7,6 @@ import { toast } from "react-toastify";
 const api = process.env.REACT_APP_API;
 
 function TransferFundsForm() {
-  // const { userId } = useParams();  
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
@@ -36,15 +34,10 @@ function TransferFundsForm() {
       position: "bottom-left"
     });
 
-  const handleInfo = msg =>
-    toast.info(msg, {
-      position: "top-right"
-    });
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    handleInfo("Please wait for transaction to complete!");
     try {
       const response = await axios.post(
         `${api}/transaction/transfer/${userId}`,
@@ -60,8 +53,7 @@ function TransferFundsForm() {
       );
       if (response.data.success) {
         handleSuccess(response.data.message);
-        setTimeout(() => {
-          // navigate(`/dashboard/${userId}`, { replace: true });          
+        setTimeout(() => {       
           navigate('/dashboard', { replace: true });
         }, 5000);
       } else {

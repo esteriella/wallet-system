@@ -36,11 +36,6 @@ function Signup() {
       position: "bottom-right"
     });
 
-  const handleInfo = msg =>
-    toast.info(msg, {
-      position: "top-right"
-    });
-
   const signup = async e => {
     e.preventDefault();
     if (password.length < passwordLengthRequirement) {
@@ -51,7 +46,6 @@ function Signup() {
     }
 
     setErrors("");
-    handleInfo("Please wait while we sign you up!");
     try {
       const { data } = await axios.post(`${api}/auth/signup`, {
         ...inputValue

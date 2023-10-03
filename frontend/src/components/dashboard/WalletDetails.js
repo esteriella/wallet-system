@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { 
-  // useParams, 
   Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
@@ -9,7 +8,6 @@ import Loader from "../shared/Loader";
 const api = process.env.REACT_APP_API;
 
 function WalletDetails() {
-  // const { userId } = useParams();  
   const userId = localStorage.getItem("userId");
   const [userData, setUserData] = useState([]);
   const [loadingState, setLoadingState] = useState(false);

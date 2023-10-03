@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { useParams } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import Loader from "../shared/Loader";
@@ -7,7 +6,6 @@ import Loader from "../shared/Loader";
 const api = process.env.REACT_APP_API;
 
 function TransactionsList() {
-  // const { userId } = useParams();  
   const userId = localStorage.getItem("userId");
   const [transactions, setTransactions] = useState([]);
   const [loadingState, setLoadingState] = useState(false);

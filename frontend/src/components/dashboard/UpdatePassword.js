@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  // useParams,
   useNavigate,
   Link
 } from "react-router-dom";
@@ -11,7 +10,6 @@ import "../auth/Login.css";
 const api = process.env.REACT_APP_API;
 
 export default function UpdatePassword() {
-  // const { userId } = useParams();
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
   const [inputValue, setInputValue] = useState({
@@ -50,10 +48,6 @@ export default function UpdatePassword() {
       position: "bottom-left"
     });
 
-  const handleInfo = msg =>
-    toast.info(msg, {
-      position: "top-right"
-    });
 
     const logout = () => {
         localStorage.removeItem("token");
@@ -65,8 +59,7 @@ export default function UpdatePassword() {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    
-    handleInfo("Please wait while we update your password!");
+
     try {
         const response = await axios.put(
             `${api}/user/updatepassword/${userId}`,

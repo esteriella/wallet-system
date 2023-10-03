@@ -55,14 +55,14 @@ const signin = async (req, res, next) => {
         expires: new Date(
           Date.now() + 10 * 24 * 60 * 60 * 1000 // expires in 10days
         ),
+        sameSite: "none",
         httpOnly: false
       })
       .status(201)
       .json({
         message: "User signed in successfully",
         success: true,
-        userId,
-        token
+        userId
       });
     next();
   } catch (error) {

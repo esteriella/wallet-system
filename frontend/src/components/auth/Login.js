@@ -4,10 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useCookies } from 'react-cookie';
 
 const api = process.env.REACT_APP_API;
 
 function Login() {
+  const [cookies, setCookie] = useCookies(['token']);
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: "",
@@ -52,16 +54,23 @@ function Login() {
         { withCredentials: true }
       );
 
-      const { message, success, userId} = data;
+      const { message, success, userId, token} = data;
       console.log(data);
       if (success) {        
-        
+        setCookie('token', response.data.token, {
+          path: '/',
+          expires: new Date(
+            Date.now() + 10 * 24 * 60 * 60 * 1000), // Set expiration time in seconds (e.g., 10 days)
+          sameSite: 'none', // SameSite attribute set to 'none'
+          secure: true, // Requires a secure (HTTPS) connection
+          httpOnly: false,
+        });
         localStorage.setItem("userId", userId);
         handleSuccess(message);
-        // setTimeout(() => {
-        //   // navigate(`/dashboard/${userId}`);          
-        //   navigate('/');
-        // }, 5000);
+        setTimeout(() => {
+          // navigate(`/dashboard/${userId}`);          
+          navigate('/dashboard');
+        }, 5000);
       } else {
         handleError(message);
       }

@@ -64,7 +64,8 @@ const signin = async (req, res, next) => {
       .json({
         message: "User signed in successfully",
         success: true,
-        userId
+        userId,
+        token
       });
     next();
   } catch (error) {

@@ -5,7 +5,7 @@ const { createError } = require("./errors.js");
 
 const verifyToken = (req, res, next) => {
   const bearerToken =  req.headers.authorization?.split(' ')[1];
-  const token = req.cookies.token || bearerToken;
+  const token = bearerToken || req.cookies.token;
   console.log(token)
   if (!token) {
     return next(createError(401, "You are not authenticated!"));
@@ -20,7 +20,7 @@ const verifyToken = (req, res, next) => {
 
 const verifyLogin = (req, res, next) => {
   const bearerToken =  req.headers.authorization?.split(' ')[1];
-  const token = req.cookies.token || bearerToken;
+  const token = bearerToken || req.cookies.token;
   console.log(token)
 
   if (token) {

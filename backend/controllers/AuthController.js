@@ -56,6 +56,7 @@ const signin = async (req, res, next) => {
           Date.now() + 10 * 24 * 60 * 60 * 1000 // expires in 10days
         ),
         sameSite: "none",
+        secure: false
         httpOnly: false
       })
       .status(201)

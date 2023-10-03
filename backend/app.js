@@ -2,8 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-// const bodyParser = require("body-parser");
-// const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const authRouter = require("./routes/authRoutes");
 const userRouter = require("./routes/userRoutes");
 const walletRouter = require("./routes/walletRoutes");
@@ -27,14 +27,15 @@ app.listen(APP_PORT, () => {
 });
 
 
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use(
   cors({
     origin: ["http://localhost:3000", "https://estie-wallet-system.vercel.app"],
-    methods: ["GET", "POST", "PUT", "DELETE"]
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
   })
 );
 

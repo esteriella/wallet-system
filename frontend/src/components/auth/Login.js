@@ -58,10 +58,10 @@ function Login() {
         
         localStorage.setItem("userId", userId);
         handleSuccess(message);
-        setTimeout(() => {
-          // navigate(`/dashboard/${userId}`);          
-          navigate('/');
-        }, 5000);
+        // setTimeout(() => {
+        //   // navigate(`/dashboard/${userId}`);          
+        //   navigate('/');
+        // }, 5000);
       } else {
         handleError(message);
       }

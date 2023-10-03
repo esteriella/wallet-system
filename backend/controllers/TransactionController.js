@@ -7,7 +7,7 @@ const transferMoney = async (req, res) => {
     const senderWallet = await Wallet.findOne({ user: req.params.userId });
     const recipientWallet = await Wallet.findOne({ user: req.body.to });
 
-    if (senderWallet._id === recipientWallet._id) {
+    if (senderWallet.user.toString() === recipientWallet.user.toString()) {
       return res
         .status(400)
         .json({ message: "You can't transfer to yourself!", success: false });

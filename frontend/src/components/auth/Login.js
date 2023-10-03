@@ -66,10 +66,8 @@ function Login() {
           secure: true,
           httpOnly: false,
         });
-        localStorage.setItem({
-          "userId": userId,
-          "token": token
-        });
+        localStorage.setItem("userId", userId);
+        localStorage.setItem("token", token);
         handleSuccess(message);
         setTimeout(() => {
           // navigate(`/dashboard/${userId}`);          

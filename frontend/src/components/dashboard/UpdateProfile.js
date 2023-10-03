@@ -21,6 +21,16 @@ export default function UpdateProfile() {
     lastName: "",
     email: ""
   });
+  const cookies = useCookies([]);
+  
+  useEffect(() => {
+    const verifyCookie = async () => {
+      if (!cookies.token) {
+        navigate("/signin");
+      }
+    };
+    verifyCookie();
+  }, [cookies, navigate]);
 
   const { firstName, lastName, email } = inputValue;
 

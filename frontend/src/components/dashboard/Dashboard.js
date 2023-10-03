@@ -10,6 +10,7 @@ import { useCookies } from "react-cookie";
 function Dashboard() {
   const navigate = useNavigate();
   const cookies = useCookies([]);
+  
   useEffect(() => {
     const verifyCookie = async () => {
       if (!cookies.token) {
@@ -18,6 +19,7 @@ function Dashboard() {
     };
     verifyCookie();
   }, [cookies, navigate]);
+
   return (
     <div>
       <WalletDetails />

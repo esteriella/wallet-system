@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   // useParams,
   useNavigate,
@@ -20,6 +20,16 @@ export default function UpdatePassword() {
     oldPassword: "",
     newPassword: ""
   });
+  const cookies = useCookies([]);
+  
+  useEffect(() => {
+    const verifyCookie = async () => {
+      if (!cookies.token) {
+        navigate("/signin");
+      }
+    };
+    verifyCookie();
+  }, [cookies, navigate]);
 
   const { oldPassword, newPassword } = inputValue;
 

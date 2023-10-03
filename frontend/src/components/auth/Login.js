@@ -4,12 +4,10 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useCookies } from 'react-cookie';
 
 const api = process.env.REACT_APP_API;
 
 function Login() {
-  const [cookies, setCookie] = useCookies(['token']);
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: "",
@@ -41,80 +39,28 @@ function Login() {
       position: "top-right"
     });
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   handleInfo("Please wait while we sign you in!");
-  //   try {
-  //     const { data } = await axios.post(
-  //       `${api}/auth/signin`,
-  //       {
-  //         ...inputValue,
-  //       },        
-  //       { withCredentials: true }
-  //     );
-
-  //     console.log(data);
-
-  //     const { message, success, userId} = data;
-  //     if (success) {        
-        
-  //       localStorage.setItem("userId", userId);
-  //       handleSuccess(message);
-  //       setTimeout(() => {
-  //         // navigate(`/dashboard/${userId}`);          
-  //         navigate('/dashboard');
-  //       }, 5000);
-  //     } else {
-  //       handleError(message);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  //   setInputValue({
-  //     ...inputValue,
-  //     email: "",
-  //     password: "",
-  //   });
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     handleInfo("Please wait while we sign you in!");
     try {
-      const response = await axios.post(
+      const { data } = await axios.post(
         `${api}/auth/signin`,
         {
           ...inputValue,
-        },
-        { withCredentials: true } // include this line to send cookies with the request
+        },        
+        { withCredentials: true }
       );
-  
-      const { message, success, userid } = response.data;
-      
-      console.log(response.data)
-      console.log(response.headers['set-cookie'])
-  
-      if (success) {
-        const cookiesFromResponse = response.cookie; // access 'set-cookie' header from the response
-  
-        if (cookiesFromResponse) {
-          cookiesFromResponse.forEach((cookieStr) => {
-            const [name, value] = cookieStr.split(';')[0].split('=');
-  
-            // set a cookie using react-cookie
-            setCookie(name, value, { path: '/' });
-  
-            console.log(`cookie name: ${name}, cookie value: ${value}`);
-            console.log("lmao")
-          });
-        } 
+
+      console.log(data);
+
+      const { message, success, userId} = data;
+      if (success) {        
         
-        console.log("lmao")
-        
-        localStorage.setItem("userid", userid);
+        localStorage.setItem("userId", userId);
         handleSuccess(message);
         setTimeout(() => {
+          // navigate(`/dashboard/${userId}`);          
           navigate('/dashboard');
         }, 5000);
       } else {

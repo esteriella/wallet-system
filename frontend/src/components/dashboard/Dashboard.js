@@ -5,20 +5,20 @@ import WalletDetails from "./WalletDetails";
 import "./Style.css";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 
 function Dashboard() {
   const navigate = useNavigate();
-  const cookies = useCookies([]);
   
   useEffect(() => {
-    const verifyCookie = async () => {
-      if (!cookies.token) {
+    const verifyToken = () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
         navigate("/signin");
       }
     };
-    verifyCookie();
-  }, [cookies, navigate]);
+    verifyToken();
+  }, [navigate]);
 
   return (
     <div>

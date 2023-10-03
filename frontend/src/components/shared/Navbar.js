@@ -1,9 +1,7 @@
 import walletlogo from "../../Assets/wallet-icon.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 
 function Navbar() {
-  const [cookies, removeCookie] = useCookies(["token"]);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -11,12 +9,16 @@ function Navbar() {
   // const userId = localStorage.getItem("userId");
 
   const logout = () => {
-    removeCookie("token");
     localStorage.removeItem("userId");
+    localStorage.removeItem("token");
     navigate("/", { replace: true });
   };
 
-  const isTokenPresent = cookies.token ? true : false;
+  const token = localStorage.getItem("token");
+
+  // const isTokenPresent = token ? true : false;
+
+  const isTokenPresent = !!token;
 
   const isDashboardPage = location.pathname.startsWith("/dashboard");
 
@@ -35,31 +37,30 @@ function Navbar() {
       <section>
         {isTokenPresent ? (
           <>
-            {!isDashboardPage ? 
-              (
-                <ul className="nav-links">
-                  <li>
-                    {/* <Link to={`/dashboard/${userId}`} className="nav-link">
-                      Dashboard
-                    </Link> */}
-                     <Link to='/dashboard' className="nav-link">
-                      Dashboard
-                    </Link>
-                  </li>
-                  <li>
-                    <button onClick={logout} className="nav-link">
-                      Sign Out
-                    </button>
-                  </li>
-                </ul>
-            ):(
-                <ul>
-                  <li>
-                    <button onClick={logout} className="nav-link">
-                      Sign Out
-                    </button>
-                  </li>
-                </ul>
+            {!isDashboardPage ? (
+              <ul className="nav-links">
+                <li>
+                  {/* <Link to={`/dashboard/${userId}`} className="nav-link">
+                    Dashboard
+                  </Link> */}
+                  <Link to='/dashboard' className="nav-link">
+                    Dashboard
+                  </Link>
+                </li>
+                <li>
+                  <button onClick={logout} className="nav-link">
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
+            ) : (
+              <ul>
+                <li>
+                  <button onClick={logout} className="nav-link">
+                    Sign Out
+                  </button>
+                </li>
+              </ul>
             )}
           </>
         ) : (

@@ -1,12 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import earnreward from "../../Assets/earn-reward.png";
-import { useCookies } from "react-cookie";
 
 const HomePage = () => {  
-  const cookies = useCookies(["token"]);
-  // const userId = localStorage.getItem("userId");
-  const isTokenPresent = cookies.token ? true : false;
+  // const userId = localStorage.getItem("userId"); 
+  
+  const token = localStorage.getItem("token");
+
+  const isTokenPresent = !!token;
+
   return (
     <div className="homepage">
       <div className="container">

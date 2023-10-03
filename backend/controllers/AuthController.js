@@ -50,17 +50,16 @@ const signin = async (req, res, next) => {
     }
     const userId = user._id;
     const token = createSecretToken(user._id);
-    res.cookie("token", token, {
-      withCredentials: true,
-      expires: new Date(
-        Date.now() + 10 * 24 * 60 * 60 * 1000 // expires in 10days
-      ),
-      httpOnly: false
-    });
     res
+      .cookie("token", token, {
+        expires: new Date(
+          Date.now() + 10 * 24 * 60 * 60 * 1000 // expires in 10days
+        ),
+        httpOnly: false
+      })
       .status(201)
       .json({
-        message: "User signed in successfully", 
+        message: "User signed in successfully",
         success: true,
         userId
       });

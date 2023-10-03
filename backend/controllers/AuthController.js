@@ -51,6 +51,7 @@ const signin = async (req, res, next) => {
     const userId = user._id;
     const token = createSecretToken(user._id);
     res.cookie("token", token, {
+      withCredentials: true,
       expires: new Date(
         Date.now() + 10 * 24 * 60 * 60 * 1000 // expires in 10days
       ),

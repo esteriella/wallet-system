@@ -7,29 +7,28 @@ import {
 import axios from "axios";
 import { toast } from "react-toastify";
 import "../auth/Login.css";
-import { useCookies } from "react-cookie";
 
 const api = process.env.REACT_APP_API;
 
 export default function UpdatePassword() {
   // const { userId } = useParams();
   const navigate = useNavigate();
-  const [removeCookie] = useCookies(["token"]);
   const userId = localStorage.getItem("userId");
   const [inputValue, setInputValue] = useState({
     oldPassword: "",
     newPassword: ""
   });
-  const cookies = useCookies([]);
   
   useEffect(() => {
-    const verifyCookie = async () => {
-      if (!cookies.token) {
+    const verifyToken = () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
         navigate("/signin");
       }
     };
-    verifyCookie();
-  }, [cookies, navigate]);
+    verifyToken();
+  }, [navigate]);
 
   const { oldPassword, newPassword } = inputValue;
 
@@ -57,7 +56,7 @@ export default function UpdatePassword() {
     });
 
     const logout = () => {
-        removeCookie("token");
+        localStorage.removeItem("token");
         localStorage.removeItem("userId");
         setTimeout(() => {
             navigate("/signin");

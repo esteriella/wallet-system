@@ -87,7 +87,8 @@ function TransactionsList() {
                 <th>Date</th>
                 <th>Type</th>
                 <th>Amount</th>
-                <th>Destination</th>
+                <th>From</th>
+                <th>towards</th>
               </tr>
               {transactions.map((transaction, key) => {
                 return (
@@ -96,7 +97,7 @@ function TransactionsList() {
                       {convertDate(transaction.createdAt)}
                     </td>
                     <td>
-                      {transaction.type}
+                      {transaction.transactionType}
                     </td>
                     <td>
                       {transaction.amount}

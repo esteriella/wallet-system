@@ -8,7 +8,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "../auth/Login.css";
 import Loader from "../shared/Loader";
-import { useCookies } from "react-cookie";
 
 const api = process.env.REACT_APP_API;
 
@@ -22,16 +21,17 @@ export default function UpdateProfile() {
     lastName: "",
     email: ""
   });
-  const cookies = useCookies([]);
   
   useEffect(() => {
-    const verifyCookie = async () => {
-      if (!cookies.token) {
+    const verifyToken = () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
         navigate("/signin");
       }
     };
-    verifyCookie();
-  }, [cookies, navigate]);
+    verifyToken();
+  }, [navigate]);
 
   const { firstName, lastName, email } = inputValue;
 

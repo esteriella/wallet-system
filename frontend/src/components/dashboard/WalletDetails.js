@@ -76,7 +76,7 @@ function WalletDetails() {
               owner: name,
               email: user.email,
               accountNo: user._id,
-              balance: walletBalance
+              balance: walletBalance.balance
             };
             setUserData(userData);
             setLoadingState(true);

@@ -49,32 +49,32 @@ const updateUser = async (req, res) => {
 
 const updatePassword = async (req, res) => {
   try {
+    const { oldPassword, newPassword } = req.body;
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Old password is incorrect", success: false });
+    }
     const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
-
-    // Update the user's password and return the updated user
-    const user = await User.findByIdAndUpdate(
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+    const updatedUser = await User.findByIdAndUpdate(
       req.params.userId,
       { password: hashedPassword },
       { new: true }
     );
-
-    if (!user) {
-      // Handle the case where the user is not found
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Respond with a success message
     res.status(201).json({
       message: "Password updated successfully",
       success: true,
     });
   } catch (error) {
-    // Handle any errors that occur during password update
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
 
 
 module.exports = {

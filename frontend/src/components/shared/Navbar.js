@@ -39,7 +39,10 @@ function Navbar() {
               (
                 <ul className="nav-links">
                   <li>
-                    <Link to={`/dashboard/${userId}`} className="nav-link">
+                    {/* <Link to={`/dashboard/${userId}`} className="nav-link">
+                      Dashboard
+                    </Link> */}
+                     <Link to='/dashboard' className="nav-link">
                       Dashboard
                     </Link>
                   </li>

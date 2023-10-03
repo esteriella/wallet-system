@@ -4,7 +4,7 @@ import earnreward from "../../Assets/earn-reward.png";
 import { useCookies } from "react-cookie";
 
 const HomePage = () => {  
-  const cookies = useCookies([]);
+  const cookies = useCookies(["token"]);
   // const userId = localStorage.getItem("userId");
   const isTokenPresent = cookies.token ? true : false;
   return (

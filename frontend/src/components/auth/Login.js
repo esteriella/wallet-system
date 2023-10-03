@@ -56,13 +56,14 @@ function Login() {
 
       const { message, success, userId, token} = data;
       console.log(data);
+      console.log(token);
       if (success) {        
         setCookie('token', token, {
           path: '/',
           expires: new Date(
-            Date.now() + 10 * 24 * 60 * 60 * 1000), // Set expiration time in seconds (e.g., 10 days)
-          sameSite: 'none', // SameSite attribute set to 'none'
-          secure: true, // Requires a secure (HTTPS) connection
+            Date.now() + 10 * 24 * 60 * 60 * 1000),
+          sameSite: 'none', 
+          secure: true,
           httpOnly: false,
         });
         localStorage.setItem("userId", userId);

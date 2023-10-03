@@ -88,7 +88,7 @@ function TransactionsList() {
                 <th>Type</th>
                 <th>Amount</th>
                 <th>From</th>
-                <th>towards</th>
+                <th>To</th>
               </tr>
               {transactions.map((transaction, key) => {
                 return (

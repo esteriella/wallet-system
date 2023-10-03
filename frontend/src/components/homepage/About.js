@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom'
+
 export default function About(){
     return(
         <div className="about">
             <h2>About</h2>
             <p>
-                Welcome to Estie Wallet System! We're excited to have you explore and test our wallet management system. We recommend using dummy information when testing out the application.
+                Welcome to <Link to='https://github.com/esteriella/wallet-system'>Estie Wallet System!</Link> We're excited to have you explore and test our wallet management system. We recommend using dummy information when testing out the application.
             </p>
             <h2>Disclaimer</h2>
             <p><strong>This is Not a Real Wallet</strong></p>

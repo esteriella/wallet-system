@@ -47,18 +47,14 @@ function Navbar() {
                     Dashboard
                   </Link>
                 </li>
-                <li>
-                  <li onClick={logout} className="nav-link">
-                    Sign Out
-                  </li>
+                <li onClick={logout} className="nav-link">
+                  Sign Out
                 </li>
               </ul>
             ) : (
               <ul>
-                <li>
-                  <li onClick={logout} className="nav-link">
-                    Sign Out
-                  </li>
+                <li onClick={logout} className="nav-link">
+                  Sign Out
                 </li>
               </ul>
             )}

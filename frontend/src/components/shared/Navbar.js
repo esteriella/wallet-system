@@ -48,15 +48,19 @@ function Navbar() {
                   </Link>
                 </li>
                 <li>
-                  <button onClick={logout} className="nav-link">
+                  <li onClick={logout} className="nav-link">
                     Sign Out
-                  </button>
+                  </li>
                 </li>
               </ul>
             ) : (
-              <button onClick={logout} className="nav-link">
-                Sign Out
-              </button>
+              <ul>
+                <li>
+                  <li onClick={logout} className="nav-link">
+                    Sign Out
+                  </li>
+                </li>
+              </ul>
             )}
           </>
         ) : (

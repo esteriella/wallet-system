@@ -1,8 +1,9 @@
 import React from 'react';
+import { TailSpin } from 'react-loader-spinner';
 
 function Loader() {
   return (
-    <div>Loading...</div>
+    <TailSpin  type="Puff" color="#3084a4ff" height={80} width={80} />
   );
 }
 

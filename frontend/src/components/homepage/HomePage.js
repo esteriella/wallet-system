@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import earnreward from "../../Assets/earn-reward.png";
+import { useCookies } from "react-cookie";
 
-const HomePage = () => {
+const HomePage = () => {  
+  const cookies = useCookies([]);
+  // const userId = localStorage.getItem("userId");
+  const isTokenPresent = cookies.token ? true : false;
   return (
     <div className="homepage">
       <div className="container">
@@ -15,7 +19,14 @@ const HomePage = () => {
               Join us today and embark on a journey to financial empowerment,
               where every dollar is at your fingertips.
             </p>
-            <Link to="/login" className="btn">Get Started</Link>
+            <>
+            {isTokenPresent ? 
+              // <Link to={`/dashboard/${userId}`} className="btn">Dashboard</Link>
+              <Link to='/dashboard' className="btn">Dashboard</Link>
+              : 
+              <Link to="/signup" className="btn">Get Started</Link>
+            }
+            </>
           </div>
           <img src={earnreward} alt="Logo" className="welcome-image" />
         </div>

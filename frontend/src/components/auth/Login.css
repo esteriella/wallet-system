@@ -15,10 +15,10 @@
     min-height: 80vh;
     display: flex;
     flex-wrap: wrap;
-    align-items: top;
     justify-content: center;
     padding: 15px;
     background-color: #fff;
+    margin-bottom: 25px;
 }
 
 .wrap-login{
@@ -27,7 +27,7 @@
     background-color: #5a9cb6ff;
     border-radius: 10px;
     overflow: hidden;
-    padding: 77px 55px 0px 55px;
+    padding: 55px 55px 55px 55px;
     box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.7);
 }
 
@@ -144,7 +144,7 @@
     border-radius: 10px;
     color: #fff;
     line-height: 1.2;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -181,4 +181,9 @@
   .txt2 {
     color: #fff;
     text-decoration: underline;
+  }
+
+  .error{
+    color: rgb(255, 0, 0);
+    font-size: 0.8em;
   }

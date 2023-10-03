@@ -1,111 +1,165 @@
-import React, { useState } from "react";
-import Validation from "../shared/Validation";
-import "./Registration.css";
+import { useState } from "react";
+import "./Login.css";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { useNavigate, Link } from "react-router-dom";
+
+const api = process.env.REACT_APP_API;
 
 function Signup() {
-  const [fullName, setFullName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+  const [inputValue, setInputValue] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: ""
+  });
 
-  const handleFormSubmit = e => {
-    console.log(
-      "Full name : " +
-        fullName +
-        " , " +
-        "Email : " +
-        email +
-        " ,  " +
-        "Phone Number : " +
-        phoneNumber +
-        " , " +
-        "Password : " +
-        password
-    );
-    setErrors(Validation(fullName, phoneNumber, email, password));
+  const { firstName, lastName, email, password } = inputValue;
+
+  const handleOnChange = e => {
+    const { name, value } = e.target;
+    setInputValue({
+      ...inputValue,
+      [name]: value
+    });
+  };
+  const passwordLengthRequirement = 8;
+
+  const handleError = err =>
+    toast.error(err, {
+      position: "bottom-left"
+    });
+  const handleSuccess = msg =>
+    toast.success(msg, {
+      position: "bottom-right"
+    });
+
+  const handleInfo = msg =>
+    toast.info(msg, {
+      position: "top-right"
+    });
+
+  const signup = async e => {
     e.preventDefault();
+    if (password.length < passwordLengthRequirement) {
+      setErrors(
+        `Password must be at least ${passwordLengthRequirement} characters long.`
+      );
+      return;
+    }
+
+    setErrors("");
+    handleInfo("Please wait while we sign you up!");
+    try {
+      const { data } = await axios.post(`${api}/auth/signup`, {
+        ...inputValue
+      });
+      const { success, message } = data;
+      if (success) {
+        handleSuccess(message);
+        setTimeout(() => {
+          navigate("/signin");
+        }, 5000);
+      } else {
+        handleError(message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <div className="registration-page">
-      <div className="app-wrapper1">
-        <div className="app-wrapper2">
-          <form className="form-wrapper">
-            <h2 className="signup">Sign Up</h2>
-            <div className="wrapper-input">
-              <label className="lable">Full Name</label>
+    <div className="container">
+      <div className="container-login">
+        <div className="wrap-login">
+          <form className="login-form" onSubmit={signup}>
+            <span className="login-form-title">Signup</span>
+            <div className="wrap-input">
               <input
-                className="input"
-                id="s_fullName"
+                className={
+                  firstName !== ""
+                    ? "has-val login-form-input"
+                    : "login-form-input"
+                }
+                id="s_firstName"
                 type="text"
-                name="fullname"
-                onChange={e => {
-                  setFullName(e.target.value);
-                }}
+                name="firstName"
+                required
+                value={firstName}
+                onChange={handleOnChange}
               />
-              {errors.fullName &&
-                <p className="error">
-                  {errors.fullName}
-                </p>}
+              <span className="focus-input" data-placeholder="First Name" />
             </div>
 
-            <div className="wrapper-input">
-              <label className="lable">Email</label>
+            <div className="wrap-input">
               <input
-                className="input"
+                className={
+                  lastName !== ""
+                    ? "has-val login-form-input"
+                    : "login-form-input"
+                }
+                id="s_lastName"
+                type="text"
+                name="lastName"
+                required
+                value={lastName}
+                onChange={handleOnChange}
+              />
+              <span className="focus-input" data-placeholder="Last Name" />
+            </div>
+
+            <div className="wrap-input">
+              <label className="label">Email</label>
+              <input
+                className={
+                  email !== "" ? "has-val login-form-input" : "login-form-input"
+                }
                 id="s_email"
+                required
                 type="email"
                 name="email"
-                onChange={e => {
-                  setEmail(e.target.value);
-                }}
+                value={email}
+                onChange={handleOnChange}
               />
-              {errors.email &&
-                <p className="error">
-                  {errors.email}
-                </p>}
+              <span className="focus-input" data-placeholder="Email" />
             </div>
 
-            <div className="wrapper-input">
-              <label className="lable">Phone Number</label>
+            <div className="wrap-input">
               <input
-                className="input"
-                id="p_number"
-                type="phone-number"
-                name="phone-number"
-                onChange={e => {
-                  setPhoneNumber(e.target.value);
-                }}
-              />
-              {errors.number &&
-                <p className="error">
-                  {errors.number}
-                </p>}
-            </div>
-
-            <div className="wrapper-input">
-              <label className="lable">Password</label>
-              <input
-                className="input"
+                className={
+                  password !== ""
+                    ? "has-val login-form-input"
+                    : "login-form-input"
+                }
                 id="s_password"
                 type="password"
                 name="password"
-                onChange={e => {
-                  setPassword(e.target.value);
-                }}
+                value={password}
+                required
+                onChange={handleOnChange}
               />
-              {errors.password &&
+              <span className="focus-input" data-placeholder="Password" />
+              {errors &&
                 <p className="error">
-                  {errors.password}
-                </p>}
+                  {errors}
+                </p>
+              }
             </div>
-
-            <div className="signup-btn">
-              <button className="submit" onClick={handleFormSubmit}>
-                Sign Up
-              </button>
+            {errors &&
+              <p className="error">
+                {errors}
+              </p>
+            }
+            <div className="container-login-form-btn">
+              <button className="login-form-btn" type="submit">Sign Up</button>
+            </div>
+            <div className="container-login-create-account">
+              <span className="txt1">Have an account?</span>
+              <Link className="txt2" to="/signin">
+                Sign In
+              </Link>
             </div>
           </form>
         </div>

@@ -44,7 +44,8 @@
 /* Home Page */
 .homepage {
   margin-top: 20px;
-  padding: 1.5rem
+  padding: 1.5rem;
+  min-height: 80vh
 }
 
 .welcome{
@@ -114,7 +115,6 @@
 /* Navbar */
 .logo-container {
   display: flex;
-  padding: 10px;
   justify-content: space-between;
   align-items: center;
 }
@@ -135,7 +135,7 @@
 
 .navbar {
   display: flex;
-  padding-top: 10px;
+  padding-top: 3px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

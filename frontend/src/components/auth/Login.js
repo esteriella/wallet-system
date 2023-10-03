@@ -1,64 +1,130 @@
-import React from 'react';
-import { useState } from 'react';
-import { Link } from "react-router-dom";
-import './Login.css';
-// import { useForm } from 'react-hook-form';
+import React from "react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import "./Login.css";
+import axios from "axios";
+import { toast } from "react-toastify";
 
-// import axios from 'axios';
+const api = process.env.REACT_APP_API;
 
 function Login() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  // const { register, handleSubmit } = useForm();
+  const navigate = useNavigate();
 
-  // const onSubmit = data => {
-  //   axios.post('/login', data)
-  //     .then(response => console.log(response))
-  //     .catch(error => console.error(error));
-  // };
+  const [inputValue, setInputValue] = useState({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = inputValue;
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+    setInputValue({
+      ...inputValue,
+      [name]: value,
+    });
+  };
+
+  const handleError = err =>
+    toast.error(err, {
+      position: "bottom-left"
+    });
+
+  const handleSuccess = msg =>
+    toast.success(msg, {
+      position: "bottom-left"
+    });
+
+  const handleInfo = msg =>
+    toast.info(msg, {
+      position: "top-right"
+    });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    handleInfo("Please wait while we sign you in!");
+    try {
+      const { data } = await axios.post(
+        `${api}/auth/signin`,
+        {
+          ...inputValue,
+        }
+      );
+
+      console.log(data);
+
+      const { message, success, userId} = data;
+      if (success) {        
+        localStorage.setItem("userId", userId);
+        handleSuccess(message);
+        setTimeout(() => {
+          // navigate(`/dashboard/${userId}`);          
+          navigate('/dashboard');
+        }, 5000);
+      } else {
+        handleError(message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+    setInputValue({
+      ...inputValue,
+      email: "",
+      password: "",
+    });
+  };
 
   return (
-
     <div className="container">
       <div className="container-login">
         <div className="wrap-login">
-          <form className="login-form">
-
+          <form className="login-form" onSubmit={handleSubmit}>
             <span className="login-form-title">Welcome</span>
-
             <div className="wrap-input">
-              <input className={email !== "" ? 'has-val login-form-input' : 'login-form-input'} type="email" value={email} onChange = {e => setEmail(e.target.value)}></input>
-              <span className="focus-input" data-placeholder="Email"></span>
+              <input
+                className={
+                  email !== "" ? "has-val login-form-input" : "login-form-input"
+                }
+                type="email"
+                name="email"
+                value={email}
+                required
+                onChange={handleOnChange}
+              />
+              <span className="focus-input" data-placeholder="Email" />
             </div>
 
             <div className="wrap-input">
-              <input className={password !== "" ? 'has-val login-form-input' : 'login-form-input'} type="password" value={password} onChange = {e => setPassword(e.target.value)}></input>
-              <span className="focus-input" data-placeholder="Password"></span>
+              <input
+                className={
+                  password !== ""
+                    ? "has-val login-form-input"
+                    : "login-form-input"
+                }
+                type="password"
+                name="password"
+                value={password}
+                required
+                onChange={handleOnChange}
+              />
+              <span className="focus-input" data-placeholder="Password" />
             </div>
 
             <div className="container-login-form-btn">
-              <button className="login-form-btn">Login</button>
+              <button className="login-form-btn" type="submit">Sign In</button>
             </div>
 
             <div className="container-login-create-account">
-              <span className="txt1">Don't have an account yet?</span>
-              <Link className="txt2" to="/registration">Sign Up</Link>
+              <span className="txt1">Don't have an account?</span>
+              <Link className="txt2" to="/signup">
+                Sign Up
+              </Link>
             </div>
           </form>
         </div>
       </div>
     </div>
-    // <form onSubmit={handleSubmit(onSubmit)}>
-    //   <label>
-    //     Username:
-    //     <input {...register('username', { required: true })} />
-    //   </label>
-    //   <label>
-    //     Password:
-    //     <input type="password" {...register('password', { required: true })} />
-    //   </label>
-    //   <button type="submit">Log in</button>
-    // </form>
   );
 }
 

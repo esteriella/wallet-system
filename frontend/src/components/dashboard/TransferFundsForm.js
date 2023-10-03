@@ -48,7 +48,8 @@ function TransferFundsForm() {
     try {
       const response = await axios.post(
         `${api}/transaction/transfer/${userId}`,
-        inputValue
+        {...inputValue},        
+        { withCredentials: true }
       );
       if (response.data.success) {
         handleSuccess(response.data.message);

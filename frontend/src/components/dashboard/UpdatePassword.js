@@ -73,7 +73,8 @@ export default function UpdatePassword() {
             `${api}/user/updatepassword/${userId}`,
             {
                 ...inputValue
-            }
+            },        
+            { withCredentials: true }
         );
 
         if (response.status === 404) {

@@ -39,9 +39,12 @@ function FundWallet() {
     e.preventDefault();
     handleInfo('Please wait for transaction to complete!');
     try {
-      const response = await axios.put(`${api}/wallet/fund/${userId}`, {
-        amount: amountToAdd,
-      }); 
+      const response = await axios.put(`${api}/wallet/fund/${userId}`, 
+        {
+          amount: amountToAdd,
+        },        
+        { withCredentials: true }
+      ); 
 
       if (response.data.success) {
         handleSuccess(response.data.message);        

@@ -24,7 +24,8 @@ function TransactionsList() {
       const fetchTransactions = async () => {
         try {
           const response = await axios.get(
-            `${api}/transaction/history/${userId}`
+            `${api}/transaction/history/${userId}`,        
+            { withCredentials: true }
           );
           if (response.status === 404) {
             handleError("Transactions not found!");

@@ -8,6 +8,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "../auth/Login.css";
 import Loader from "../shared/Loader";
+import { useCookies } from "react-cookie";
 
 const api = process.env.REACT_APP_API;
 
@@ -54,7 +55,8 @@ export default function UpdateProfile() {
           try {
             if (userId !== null) {
               const userResponse = await axios.get(
-                `${api}/user/details/${userId}`
+                `${api}/user/details/${userId}`,        
+                { withCredentials: true }
               );
       
               if (userResponse.status === 404) {
@@ -107,7 +109,9 @@ export default function UpdateProfile() {
         `${api}/user/update/${userId}`,
         {
             ...inputValue,
-        });
+        },        
+        { withCredentials: true }
+      );
         
         if (response.status === 404) {
             handleError("User not found!");

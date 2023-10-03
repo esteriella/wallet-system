@@ -27,7 +27,8 @@ function WalletDetails() {
         try {
           if (userId !== null) {
             const userResponse = await axios.get(
-              `${api}/user/details/${userId}`
+              `${api}/user/details/${userId}`,        
+              { withCredentials: true }
             );
 
             if (userResponse.status === 404) {
@@ -44,7 +45,8 @@ function WalletDetails() {
             const name = user.firstName + " " + user.lastName;
 
             const walletResponse = await axios.get(
-              `${api}/wallet/details/${userId}`
+              `${api}/wallet/balance/${userId}`,        
+              { withCredentials: true }
             );
             if (walletResponse.status === 404) {
               handleError('Wallet not found!');

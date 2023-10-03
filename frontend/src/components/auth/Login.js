@@ -60,7 +60,7 @@ function Login() {
         handleSuccess(message);
         setTimeout(() => {
           // navigate(`/dashboard/${userId}`);          
-          navigate('/dashboard');
+          navigate('/');
         }, 5000);
       } else {
         handleError(message);

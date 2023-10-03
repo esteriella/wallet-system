@@ -57,6 +57,7 @@ const signin = async (req, res, next) => {
         ),
         sameSite: "none",
         secure: true,
+        withCredentials: true,
         httpOnly: false
       })
       .status(201)

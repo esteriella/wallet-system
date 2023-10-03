@@ -8,7 +8,7 @@ const api = process.env.REACT_APP_API;
 
 function Signup() {
   const navigate = useNavigate();
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState("");
   const [inputValue, setInputValue] = useState({
     firstName: "",
     lastName: "",
@@ -111,7 +111,6 @@ function Signup() {
             </div>
 
             <div className="wrap-input">
-              <label className="label">Email</label>
               <input
                 className={
                   email !== "" ? "has-val login-form-input" : "login-form-input"
@@ -141,11 +140,6 @@ function Signup() {
                 onChange={handleOnChange}
               />
               <span className="focus-input" data-placeholder="Password" />
-              {errors &&
-                <p className="error">
-                  {errors}
-                </p>
-              }
             </div>
             {errors &&
               <p className="error">

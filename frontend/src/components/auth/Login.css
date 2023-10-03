@@ -186,4 +186,6 @@
   .error{
     color: rgb(255, 0, 0);
     font-size: 0.8em;
+    margin-top: -25px;
+    margin-bottom: 15px;
   }

@@ -39,7 +39,11 @@ const updateUser = async (req, res) => {
     }
 
     // Respond with the updated user data
-    res.status(200).json(user);
+    res.status(201).json({
+      message: "Profile updated successfully",
+      success: true,
+      user
+    });
   } catch (error) {
     // Handle any errors that occur during the update
     console.error(error);

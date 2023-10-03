@@ -10,8 +10,7 @@ const getWallet = async (req, res) => {
     if (!wallet) {
       return res.status(404).send({ message: "Wallet not found!" });
     }
-    const balance = wallet.balance;
-    res.status(200).send(balance);
+    res.status(200).send(wallet);
   } catch (error) {
     res.status(500).send({ message: error.message });
   }

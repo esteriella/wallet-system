@@ -56,7 +56,14 @@ export default function UpdateProfile() {
             if (userId !== null) {
               const userResponse = await axios.get(
                 `${api}/user/details/${userId}`,        
-                { withCredentials: true }
+                { 
+                  withCredentials: true,
+                  headers:{
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    Authorization: 'Bearer ' + localStorage.getItem('token')
+                  } 
+                }
               );
       
               if (userResponse.status === 404) {
@@ -110,7 +117,14 @@ export default function UpdateProfile() {
         {
             ...inputValue,
         },        
-        { withCredentials: true }
+        { 
+          withCredentials: true,
+          headers:{
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          } 
+        }
       );
         
         if (response.status === 404) {

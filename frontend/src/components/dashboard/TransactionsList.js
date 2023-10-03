@@ -25,7 +25,14 @@ function TransactionsList() {
         try {
           const response = await axios.get(
             `${api}/transaction/history/${userId}`,        
-            { withCredentials: true }
+            { 
+              withCredentials: true,
+              headers:{
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+              } 
+            }
           );
           if (response.status === 404) {
             handleError("Transactions not found!");

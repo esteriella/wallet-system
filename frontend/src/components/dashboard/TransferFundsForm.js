@@ -49,7 +49,14 @@ function TransferFundsForm() {
       const response = await axios.post(
         `${api}/transaction/transfer/${userId}`,
         {...inputValue},        
-        { withCredentials: true }
+        { 
+          withCredentials: true,
+          headers:{
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          } 
+        }
       );
       if (response.data.success) {
         handleSuccess(response.data.message);

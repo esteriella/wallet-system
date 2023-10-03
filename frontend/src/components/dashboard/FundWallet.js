@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { 
-  // useParams, 
-  useNavigate } from "react-router-dom";
+import {
+  // useParams,
+  useNavigate
+} from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 const api = process.env.REACT_APP_API;
 
 function FundWallet() {
-  // const { userId } = useParams();  
+  // const { userId } = useParams();
   const userId = localStorage.getItem("userId");
   const navigate = useNavigate();
   const [amountToAdd, setAmount] = useState(null);
@@ -34,31 +35,38 @@ function FundWallet() {
       position: "top-right"
     });
 
-
-  const handleSubmit =async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    handleInfo('Please wait for transaction to complete!');
+    handleInfo("Please wait for transaction to complete!");
     try {
-      const response = await axios.put(`${api}/wallet/fund/${userId}`, 
+      const response = await axios.put(
+        `${api}/wallet/fund/${userId}`,
         {
-          amount: amountToAdd,
-        },        
-        { withCredentials: true }
-      ); 
+          amount: amountToAdd
+        },
+        {
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token")
+          }
+        }
+      );
 
       if (response.data.success) {
-        handleSuccess(response.data.message);        
+        handleSuccess(response.data.message);
         setTimeout(() => {
-          // navigate(`/dashboard/${userId}`, { replace: true });          
-          navigate('/dashboard', { replace: true });
+          // navigate(`/dashboard/${userId}`, { replace: true });
+          navigate("/dashboard", { replace: true });
         }, 5000);
       } else {
         handleError(response.data.message);
         setAmount(null);
       }
     } catch (error) {
-      console.error('Error funding wallet:', error);
-      handleError('Error funding wallet!');
+      console.error("Error funding wallet:", error);
+      handleError("Error funding wallet!");
     }
   };
 
@@ -72,7 +80,12 @@ function FundWallet() {
       </p>
       <form className="fund-form" onSubmit={handleSubmit}>
         <label>Enter Amount</label>
-        <input type="number" value={amountToAdd} required onChange={handleAmountChange} />
+        <input
+          type="number"
+          value={amountToAdd}
+          required
+          onChange={handleAmountChange}
+        />
         <button type="submit">Fund Account</button>
       </form>
     </div>

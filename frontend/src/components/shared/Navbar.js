@@ -8,7 +8,7 @@ function Navbar() {
   const location = useLocation();
 
   
-  const userId = localStorage.getItem("userId");
+  // const userId = localStorage.getItem("userId");
 
   const logout = () => {
     removeCookie("token");

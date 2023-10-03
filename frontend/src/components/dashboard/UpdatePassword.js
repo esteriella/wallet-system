@@ -74,7 +74,14 @@ export default function UpdatePassword() {
             {
                 ...inputValue
             },        
-            { withCredentials: true }
+            { 
+              withCredentials: true,
+              headers:{
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + localStorage.getItem('token')
+              } 
+            }
         );
 
         if (response.status === 404) {

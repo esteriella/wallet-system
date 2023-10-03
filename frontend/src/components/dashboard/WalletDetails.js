@@ -28,7 +28,14 @@ function WalletDetails() {
           if (userId !== null) {
             const userResponse = await axios.get(
               `${api}/user/details/${userId}`,        
-              { withCredentials: true }
+              { 
+                withCredentials: true,
+                headers:{
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                  Authorization: 'Bearer ' + localStorage.getItem('token')
+                } 
+              }
             );
 
             if (userResponse.status === 404) {
@@ -46,7 +53,14 @@ function WalletDetails() {
 
             const walletResponse = await axios.get(
               `${api}/wallet/balance/${userId}`,        
-              { withCredentials: true }
+              { 
+                withCredentials: true, 
+                headers:{
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                  Authorization: 'Bearer ' + localStorage.getItem('token')
+                }
+              }
             );
             if (walletResponse.status === 404) {
               handleError('Wallet not found!');

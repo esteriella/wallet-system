@@ -52,9 +52,8 @@ function Login() {
         { withCredentials: true }
       );
 
-      console.log(data);
-
       const { message, success, userId} = data;
+      console.log(data);
       if (success) {        
         
         localStorage.setItem("userId", userId);

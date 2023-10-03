@@ -33,7 +33,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    // origin: ["http://localhost:3000", "https://estie-wallet-system.vercel.app"],
+    origin: ["http://localhost:3000", "https://estie-wallet-system.vercel.app"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   })

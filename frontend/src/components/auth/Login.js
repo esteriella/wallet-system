@@ -57,7 +57,7 @@ function Login() {
       const { message, success, userId, token} = data;
       console.log(data);
       if (success) {        
-        setCookie('token', response.data.token, {
+        setCookie('token', token, {
           path: '/',
           expires: new Date(
             Date.now() + 10 * 24 * 60 * 60 * 1000), // Set expiration time in seconds (e.g., 10 days)

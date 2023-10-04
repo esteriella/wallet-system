@@ -8,14 +8,15 @@ const getWallet = async (req, res) => {
 
     const wallet = await Wallet.findOne({ user: userId });
     if (!wallet) {
-      return res.status(404).send({ message: "Wallet not found!" });
+      return res.status(404).send({ message: "Wallet not found!", success: false });
     }
 
     const balance = wallet.balance;
 
     res.status(200).json({balance});
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    console.log(error);
+    res.status(500).send({ message: "Internal server error!", success: false });
   }
 };
 
@@ -41,7 +42,6 @@ const fundWallet = async (req, res) => {
       { new: true }
     );
 
-    const balance = updatedWallet.balance;
     const transfer = await Transaction.create({
       from: userId,
       to: userId,
@@ -51,11 +51,11 @@ const fundWallet = async (req, res) => {
 
     res.status(200).json({
       message: "Funded account successfully",
-      success: true,
-      balance
+      success: true
     });
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    console.log(error);
+    res.status(500).send({ message: error.message, success: false });
   }
 };
 

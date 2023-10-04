@@ -10,6 +10,7 @@ const getUser = async (req, res) => {
     }
     res.status(200).json(user);
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -41,13 +42,11 @@ const updateUser = async (req, res) => {
     // Respond with the updated user data
     res.status(201).json({
       message: "Profile updated successfully",
-      success: true,
-      user
+      success: true
     });
   } catch (error) {
-    // Handle any errors that occur during the update
     console.error(error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error", success: false });
   }
 };
 
@@ -56,17 +55,17 @@ const updatePassword = async (req, res) => {
     const { oldPassword, newPassword } = req.body;
     const user = await User.findById(req.params.userId);
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "User not found", success: false });
     }
     const isMatch = await bcrypt.compare(oldPassword, user.password);
     if (!isMatch) {
       return res.status(400).json({ message: "Old password is incorrect", success: false });
     }
-    const saltRounds = 10;
-    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+    // const saltRounds = 10;
+    // const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
     const updatedUser = await User.findByIdAndUpdate(
       req.params.userId,
-      { password: hashedPassword },
+      { password: newPassword },
       { new: true }
     );
     res.status(201).json({
@@ -75,7 +74,7 @@ const updatePassword = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Internal server error", success: false });
   }
 };
 

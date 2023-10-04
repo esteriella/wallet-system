@@ -36,7 +36,8 @@ const transferMoney = async (req, res) => {
       .status(200)
       .json({ message: "Transaction completed successfully!", success: true });
   } catch (error) {
-    res.status(500).send({message: error.message});
+    console.log(error);
+    res.status(500).send({message: error.message, success: false});
   }
 };
 
@@ -48,7 +49,7 @@ const getTransactions = async (req, res) => {
     const user = await User.findById(userId);
 
     if (!user) {
-      return res.status(404).send({message: "User not found!"});
+      return res.status(404).send({message: "User not found!", success: false});
     }
 
     // Find transactions involving the user
@@ -58,7 +59,8 @@ const getTransactions = async (req, res) => {
 
     res.status(200).send(transactions);
   } catch (error) {
-    res.status(500).send({message: error.message});
+    console.log(error);
+    res.status(500).send({message: error.message, success: false});
   }
 };
 

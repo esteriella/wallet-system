@@ -61,11 +61,11 @@ const updatePassword = async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ message: "Old password is incorrect", success: false });
     }
-    // const saltRounds = 10;
-    // const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
+    const saltRounds = 5;
+    const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
     const updatedUser = await User.findByIdAndUpdate(
       req.params.userId,
-      { password: newPassword },
+      { password: hashedPassword },
       { new: true }
     );
     res.status(201).json({

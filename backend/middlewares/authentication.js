@@ -3,16 +3,24 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const { createError } = require("./errors.js");
 
-const verifyToken = (req, res, next) => {
-  // const bearerToken =  req.headers.authorization?.split(' ')[1];
-  // const token = bearerToken || req.cookies.token;
+const receivedToken = (req) => {
   let token;
-  const bearerToken = req.headers.authorization?.split(' ')[1];
-  if (bearerToken === undefined) {
+  
+  const bearerToken =  req.headers.authorization?.split(' ')[1];
+  if(bearerToken === undefined) {
     token = req.cookies.token;
   } else {
     token = bearerToken;
   }
+  return token;
+}
+
+const verifyToken = (req, res, next) => {
+  // const bearerToken =  req.headers.authorization?.split(' ')[1];
+  // const token = bearerToken || req.cookies.token;  
+  // const token = req.cookies.token || bearerToken;
+
+  const token = receivedToken(req);
 
   if (!token) {
     return next(createError(401, "You are not authenticated!"));
@@ -28,14 +36,9 @@ const verifyToken = (req, res, next) => {
 const verifyLogin = (req, res, next) => {
   // const bearerToken =  req.headers.authorization?.split(' ')[1];
   // const token = bearerToken || req.cookies.token;
-  let token;
-  const bearerToken = req.headers.authorization?.split(' ')[1];
-  if (bearerToken === undefined) {
-    token = req.cookies.token;
-  } else {
-    token = bearerToken;
-  }
-
+  // const token = req.cookies.token || bearerToken;
+  
+  const token = receivedToken(req);
 
   if (token) {
     // Verify the token and extract the user information

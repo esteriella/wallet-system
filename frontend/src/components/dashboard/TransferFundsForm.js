@@ -37,8 +37,11 @@ function TransferFundsForm() {
 
   const handleSubmit = async e => {
     e.preventDefault();
-
+    
+    console.log("bru")
     try {
+      
+      console.log("bruhn")
       const response = await axios.post(
         `${api}/transaction/transfer/${userId}`,
         {...inputValue},        
@@ -51,6 +54,7 @@ function TransferFundsForm() {
           } 
         }
       );
+      console.log("bruhnah")
       if (response.data.success) {
         handleSuccess(response.data.message);
         setTimeout(() => {       

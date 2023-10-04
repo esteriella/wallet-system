@@ -12,8 +12,6 @@ function FundWallet() {
   const navigate = useNavigate();
   const [amountToAdd, setAmount] = useState(null);
 
-  console.log(userId);
-
   const handleAmountChange = e => {
     setAmount(e.target.value);
   };

@@ -48,8 +48,6 @@ function Login() {
       );
 
       const { message, success, userId, token} = data;
-      console.log(data);
-      console.log(token);
       if (success) {        
         setCookie('token', token, {
           path: '/',
@@ -64,7 +62,7 @@ function Login() {
         handleSuccess(message);
         setTimeout(() => {      
           navigate('/dashboard');
-        }, 5000);
+        }, 2000);
       } else {
         handleError(message);
       }

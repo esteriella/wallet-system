@@ -17,8 +17,6 @@ function WalletDetails() {
       position: "bottom-left"
     });
 
-  console.log(userId);
-
   useEffect(
     () => {
       (async () => {
@@ -88,8 +86,6 @@ function WalletDetails() {
     [userId]
   );
 
-  console.log(userData);
-
   return (
     <div>
       {loadingState
@@ -110,7 +106,9 @@ function WalletDetails() {
             <p>Update <Link to='/updateprofile' title="Update Profile">your profile</Link> or change <Link to='/updatepassword' title="Update Password">your password</Link></p>
           </div>
         : 
-          <Loader/>
+          <div className="wallet-owner">
+            <Loader/>
+          </div>
         }
     </div>
   );

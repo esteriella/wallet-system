@@ -15,8 +15,6 @@ function TransactionsList() {
       position: "bottom-left"
     });
 
-  console.log(userId);
-
   useEffect(
     () => {
       const fetchTransactions = async () => {
@@ -49,7 +47,6 @@ function TransactionsList() {
     [userId]
   );
 
-  console.log(transactions);
 
   function convertDate(isoDate) {
     const date = new Date(isoDate);
@@ -64,12 +61,10 @@ function TransactionsList() {
 
   if (loadingState === true && !transactions.length) {
     return (
-      <div className="wallet-owner">
+      <div className="tranList">
+        <h2 className="trans-title">Transaction History</h2>
         <br />
-        <h2>No transactions</h2>
-        <br />
-        <p>Add stakeholders to see stakeholder list</p>
-        <br />
+        <h3 className="trans-title">No transactions</h3>
       </div>
     );
   }
@@ -112,7 +107,9 @@ function TransactionsList() {
             </table>
           </div>  
         : 
-          <Loader/>
+          <div className="tranList">
+            <Loader/>
+          </div>
         }
     </>
   );

@@ -99,8 +99,8 @@ function TransferFundsForm() {
           value={toAccount}
           onChange={handleOnChange}
         />
+        <button type="submit">Transfer Funds</button>
       </form>
-      <button type="submit">Transfer Funds</button>
     </div>
   );
 }

@@ -19,16 +19,16 @@ const transferMoney = async (req, res) => {
         .json({ message: "Insufficient balance!", success: false });
     }
 
-    senderWallet.balance -= req.body.amount;
-    recipientWallet.balance += req.body.amount;
+    senderWallet.balance -= req.body.amountToSend;
+    recipientWallet.balance += req.body.amountToSend;
 
     await senderWallet.save();
     await recipientWallet.save();
 
     const transaction = await Transaction.create({
       from: req.params.userId,
-      to: req.body.to,
-      amount: req.body.amount,
+      to: req.body.toAccount,
+      amount: req.body.amountToSend,
       transactionType: "transfer"
     });
 

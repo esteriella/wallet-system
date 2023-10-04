@@ -5,6 +5,7 @@ import "./Login.css";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useCookies } from 'react-cookie';
+import Loader from '../shared/Loader';
 
 const api = process.env.REACT_APP_API;
 
@@ -17,6 +18,7 @@ function Login() {
   });
 
   const { email, password } = inputValue;
+  const [loading, setLoading] = useState(false);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;
@@ -38,6 +40,7 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const { data } = await axios.post(
         `${api}/auth/signin`,
@@ -68,12 +71,14 @@ function Login() {
       }
     } catch (error) {
       console.log(error);
-    }
-    setInputValue({
-      ...inputValue,
-      email: "",
-      password: "",
-    });
+    } finally {
+      setLoading(false); 
+      setInputValue({
+        ...inputValue,
+        email: "",
+        password: "",
+      }); 
+    }    
   };
   
   return (
@@ -113,7 +118,11 @@ function Login() {
             </div>
 
             <div className="container-login-form-btn">
-              <button className="login-form-btn" type="submit">Sign In</button>
+              {loading ? 
+                <Loader /> 
+              :  
+                <button className="login-form-btn" type="submit">Sign In</button>
+              }      
             </div>
 
             <div className="container-login-create-account">

@@ -3,12 +3,14 @@ import "./Login.css";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import Loader from '../shared/Loader';
 
 const api = process.env.REACT_APP_API;
 
 function Signup() {
   const navigate = useNavigate();
   const [errors, setErrors] = useState("");
+  const [loading, setLoading] = useState(false);
   const [inputValue, setInputValue] = useState({
     firstName: "",
     lastName: "",
@@ -38,10 +40,12 @@ function Signup() {
 
   const signup = async e => {
     e.preventDefault();
+    setLoading(true);
     if (password.length < passwordLengthRequirement) {
       setErrors(
         `Password must be at least ${passwordLengthRequirement} characters long.`
       );
+      setLoading(false);
       return;
     }
 
@@ -61,6 +65,8 @@ function Signup() {
       }
     } catch (error) {
       console.log(error);
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -141,7 +147,11 @@ function Signup() {
               </p>
             }
             <div className="container-login-form-btn">
-              <button className="login-form-btn" type="submit">Sign Up</button>
+              {loading ? 
+                <Loader /> 
+              :  
+                <button className="login-form-btn" type="submit">Sign Up</button>
+              }     
             </div>
             <div className="container-login-create-account">
               <span className="txt1">Have an account?</span>

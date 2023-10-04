@@ -14,6 +14,7 @@ export default function UpdateProfile() {
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
   const [loadingState, setLoadingState] = useState(false);
+  const [btnLoad, setBtnLoad] = useState(false);
   const [inputValue, setInputValue] = useState({
     firstName: "",
     lastName: "",
@@ -102,7 +103,7 @@ export default function UpdateProfile() {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setBtnLoad(true);
     try {
       const response = await axios.put(
         `${api}/user/update/${userId}`,
@@ -140,6 +141,9 @@ export default function UpdateProfile() {
 
     } catch (error) {
         console.log(error);
+    }
+    finally{
+      setBtnLoad(false);
     }
   };
 
@@ -192,7 +196,12 @@ export default function UpdateProfile() {
                   </div>
       
                   <div className="container-login-form-btn">
-                    <button className="login-form-btn" type="submit">Update</button>
+                    {btnLoad ? 
+                      <Loader/>
+                    :
+                      
+                      <button className="login-form-btn" type="submit">Update</button>
+                    }
                   </div>
       
                   <div className="container-login-create-account">

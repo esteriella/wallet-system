@@ -6,6 +6,7 @@ import {
 import axios from "axios";
 import { toast } from "react-toastify";
 import "../auth/Login.css";
+import Loader from '../shared/Loader';
 
 const api = process.env.REACT_APP_API;
 
@@ -16,6 +17,7 @@ export default function UpdatePassword() {
     oldPassword: "",
     newPassword: ""
   });
+  const [loading, setLoading] = useState(false);
   
   useEffect(() => {
     const verifyToken = () => {
@@ -59,7 +61,8 @@ export default function UpdatePassword() {
 
   const handleSubmit = async e => {
     e.preventDefault();
-
+    
+    setLoading(true); 
     try {
         const response = await axios.put(
             `${api}/user/updatepassword/${userId}`,
@@ -95,6 +98,8 @@ export default function UpdatePassword() {
     } catch (e) {
         console.log(e);
         handleError('Error updating password!')
+    }finally {
+      setLoading(false); 
     }
   };
 
@@ -138,9 +143,13 @@ export default function UpdatePassword() {
             </div>
 
             <div className="container-login-form-btn">
-              <button className="login-form-btn" type="submit">
-                Update
-              </button>
+              {loading ? 
+                <Loader /> 
+              :  
+                <button className="login-form-btn" type="submit">
+                  Update
+                </button>
+              }     
             </div>
 
             <div className="container-login-create-account">

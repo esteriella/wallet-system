@@ -106,15 +106,14 @@ function TransferFundsForm() {
           onChange={handleOnChange}
         />
         <>
-        {loading ? 
-            <Loader /> 
-          :  
-            <button type="submit" >
-              Transfer Funds
-            </button>
-        }       
+          {loading ? 
+              <Loader /> 
+            :  
+              <button type="submit" >
+                Transfer Funds
+              </button>
+          }       
         </>
-        {/* <button type="submit">Transfer Funds</button> */}
       </form>
     </div>
   );

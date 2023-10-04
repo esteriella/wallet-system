@@ -3,6 +3,7 @@ import {
   useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Loader from '../shared/Loader';
 
 const api = process.env.REACT_APP_API;
 
@@ -15,6 +16,7 @@ function TransferFundsForm() {
   });
 
   const { amountToSend, toAccount } = inputValue;
+  const [loading, setLoading] = useState(false);
 
   const handleOnChange = e => {
     const { name, value } = e.target;
@@ -37,6 +39,7 @@ function TransferFundsForm() {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    setLoading(true); 
     
     console.log("bru")
     try {
@@ -72,6 +75,9 @@ function TransferFundsForm() {
       console.error("Error transferring money:", error);
       handleError("Error transferring money!");
     }
+    finally {
+      setLoading(false);  
+    }
   };
 
   return (
@@ -99,7 +105,16 @@ function TransferFundsForm() {
           value={toAccount}
           onChange={handleOnChange}
         />
-        <button type="submit">Transfer Funds</button>
+        <>
+        {loading ? 
+            <Loader /> 
+          :  
+            <button type="submit" >
+              Transfer Funds
+            </button>
+        }       
+        </>
+        {/* <button type="submit">Transfer Funds</button> */}
       </form>
     </div>
   );

@@ -87,7 +87,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
-import Loader from './shared/Loader'; // assuming Loader is in the same directory
+import Loader from '../shared/Loader'; 
 
 const api = process.env.REACT_APP_API;
 
@@ -143,7 +143,7 @@ function FundWallet() {
       console.error("Error funding wallet:", error);
       handleError("Error funding wallet!");
     } finally {
-      setLoading(false);  // set loading back to false when the request is complete
+      setLoading(false);  
     }
   };
 
@@ -163,9 +163,15 @@ function FundWallet() {
           required
           onChange={handleAmountChange}
         />
-        <button type="submit" disabled={loading}>
-          {loading ? <Loader /> : 'Fund Account'}  // conditionally render the Loader component or button text based on the loading state
-        </button>
+        <>
+        {loading ? 
+            <Loader /> 
+          :  
+            <button type="submit" >
+              Fund Wallet
+            </button>
+        }       
+        </>
       </form>
     </div>
   );

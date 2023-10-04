@@ -5,7 +5,7 @@ const User = require("../models/User");
 const transferMoney = async (req, res) => {
   try {
     const senderWallet = await Wallet.findOne({ user: req.params.userId });
-    const recipientWallet = await Wallet.findOne({ user: req.body.to });
+    const recipientWallet = await Wallet.findOne({ user: req.body.toAccount });
 
     if (senderWallet.user.toString() === recipientWallet.user.toString()) {
       return res
@@ -13,7 +13,7 @@ const transferMoney = async (req, res) => {
         .json({ message: "You can't transfer to yourself!", success: false });
     }
 
-    if (senderWallet.balance < req.body.amount) {
+    if (senderWallet.balance < req.body.amountToSend) {
       return res
         .status(400)
         .json({ message: "Insufficient balance!", success: false });

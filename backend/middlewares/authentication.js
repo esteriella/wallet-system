@@ -9,10 +9,13 @@ const receivedToken = (req) => {
   const bearerToken =  req.headers.authorization?.split(' ')[1];
   if(bearerToken === undefined) {
     token = req.cookies.token;
+    console.log(token);
+    return token;
   } else {
     token = bearerToken;
+    console.log(token);
+    return; 
   }
-  return token;
 }
 
 const verifyToken = (req, res, next) => {

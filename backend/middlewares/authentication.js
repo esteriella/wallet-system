@@ -4,8 +4,16 @@ const jwt = require("jsonwebtoken");
 const { createError } = require("./errors.js");
 
 const verifyToken = (req, res, next) => {
-  const bearerToken =  req.headers.authorization?.split(' ')[1];
-  const token = bearerToken || req.cookies.token;
+  // const bearerToken =  req.headers.authorization?.split(' ')[1];
+  // const token = bearerToken || req.cookies.token;
+  let token;
+  const bearerToken = req.headers.authorization?.split(' ')[1];
+  if (bearerToken === undefined) {
+    token = req.cookies.token;
+  } else {
+    token = bearerToken;
+  }
+
   if (!token) {
     return next(createError(401, "You are not authenticated!"));
   }
@@ -18,8 +26,16 @@ const verifyToken = (req, res, next) => {
 };
 
 const verifyLogin = (req, res, next) => {
-  const bearerToken =  req.headers.authorization?.split(' ')[1];
-  const token = bearerToken || req.cookies.token;
+  // const bearerToken =  req.headers.authorization?.split(' ')[1];
+  // const token = bearerToken || req.cookies.token;
+  let token;
+  const bearerToken = req.headers.authorization?.split(' ')[1];
+  if (bearerToken === undefined) {
+    token = req.cookies.token;
+  } else {
+    token = bearerToken;
+  }
+
 
   if (token) {
     // Verify the token and extract the user information

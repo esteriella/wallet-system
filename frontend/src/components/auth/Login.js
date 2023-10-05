@@ -55,7 +55,8 @@ function Login() {
         setCookie('token', token, {
           path: '/',
           expires: new Date(
-            Date.now() + 10 * 24 * 60 * 60 * 1000),
+            Date.now() + process.env.REACT_APP_SECRETS_TIME 
+          ),
           sameSite: 'none', 
           secure: true,
           httpOnly: false,

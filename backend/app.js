@@ -24,8 +24,6 @@ app.listen(APP_PORT, () => {
   console.log(`Server is listening on port ${APP_PORT}`);
 });
 
-app.set("trust proxy", 1);
-
 app.use(
   cors({
     origin: ["http://localhost:3000", "https://estie-wallet-system.vercel.app"],

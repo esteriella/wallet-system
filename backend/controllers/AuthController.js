@@ -2,6 +2,7 @@ const User = require("../models/User");
 const Wallet = require("../models/Wallet");
 const { createSecretToken } = require("../utils/Secrets");
 const bcrypt = require("bcrypt");
+require("dotenv").config();
 
 const signup = async (req, res, next) => {
   try {
@@ -51,10 +52,11 @@ const signin = async (req, res, next) => {
     }
     const userId = user._id;
     const token = createSecretToken(userId);
+    const cookieTime = parseInt(process.env.COOKIE_TIME, 10);
     res
       .cookie("token", token, {
         expires: new Date(
-          Date.now() + process.env.COOKIE_TIME 
+          Date.now() + cookieTime 
         ),
         sameSite: "none",
         secure: true,

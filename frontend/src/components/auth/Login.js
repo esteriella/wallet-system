@@ -9,6 +9,8 @@ import Loader from '../shared/Loader';
 
 const api = process.env.REACT_APP_API;
 
+const cookieTime = parseInt(process.env.REACT_APP_SECRETS_TIME, 10);
+
 function Login() {
   const [cookies, setCookie] = useCookies(['token']);
   const navigate = useNavigate();
@@ -55,7 +57,7 @@ function Login() {
         setCookie('token', token, {
           path: '/',
           expires: new Date(
-            Date.now() + process.env.REACT_APP_SECRETS_TIME 
+            Date.now() + cookieTime 
           ),
           sameSite: 'none', 
           secure: true,

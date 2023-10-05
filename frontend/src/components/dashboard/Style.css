@@ -108,6 +108,7 @@
 	border-radius: 8px;
 	width: 150%;
 	padding: 10px 20px 10px 20px;
+	text-align: center;
 }
 
 .fund-form button {
@@ -203,4 +204,5 @@
 	border-radius: 8px;
 	width: 150%;
 	padding: 10px 20px 10px 20px;
+	text-align: center;
 }

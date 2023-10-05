@@ -110,7 +110,7 @@ function TransferFundsForm() {
               <Loader /> 
             :  
               <button type="submit" >
-                Transfer Funds
+                Transfer
               </button>
           }       
         </>

@@ -147,7 +147,8 @@
 .footer {
 	display: flex;
   padding: 0rem 1.5rem 0rem 1.5rem;
-  justify-content: space-between;
+  justify-content: space-between;  
+	margin-top: 20px;
 }
 
 .estie-wallet {

@@ -32,6 +32,10 @@ app.use(
   })
 );
 
+app.get("/", (req, res) => {
+  res.send("<h1>Healthy</h1>");
+})
+
 app.use(errorHandler);
 app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ limit: '20mb', extended: true }));

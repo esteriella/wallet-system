@@ -27,14 +27,14 @@ app.listen(APP_PORT, () => {
 app.use(
   cors({
     origin: ["http://localhost:3000", "https://estie-wallet-system.vercel.app"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
     credentials: true
   })
 );
 
 app.get("/", (req, res) => {
   res.send("<h1>Healthy</h1>");
-})
+});
 
 app.use(errorHandler);
 app.use(express.json({ limit: '20mb' }));

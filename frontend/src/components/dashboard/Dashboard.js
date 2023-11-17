@@ -12,9 +12,13 @@ function Dashboard() {
   useEffect(() => {
     const verifyToken = () => {
       const token = localStorage.getItem("token");
+      const isVerified = localStorage.getItem("isVerified");
 
       if (!token) {
         navigate("/signin");
+      }
+      if (!isVerified) {
+        navigate("/bvn");
       }
     };
     verifyToken();

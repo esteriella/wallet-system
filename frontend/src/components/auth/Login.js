@@ -52,7 +52,7 @@ function Login() {
         { withCredentials: true }
       );
 
-      const { message, success, userId, token} = data;
+      const { message, success, userId, isVerified, token} = data;
       if (success) {        
         setCookie('token', token, {
           path: '/',
@@ -64,12 +64,22 @@ function Login() {
           httpOnly: false,
         });
         localStorage.setItem("userId", userId);
+        localStorage.setItem("isVerified", isVerified);
         localStorage.setItem("token", token);
         handleSuccess(message);
-        setTimeout(() => {      
-          navigate('/dashboard');
-        }, 2000);
-      } else {
+        if(isVerified){
+          setTimeout(() => {      
+            navigate('/dashboard');
+          }, 1000);
+        } 
+        else {          
+          handleError("Please verify your bvn");  
+          setTimeout(() => {    
+            navigate('/bvn');
+          }, 1000);
+        }
+      } 
+      else {
         handleError(message);
       }
     } catch (error) {

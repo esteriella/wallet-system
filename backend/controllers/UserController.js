@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 
+
 const getUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.userId).select("-password");
@@ -50,16 +51,49 @@ const updateUser = async (req, res) => {
   }
 };
 
+const verifyBVN = async (req, res) => {
+  try{
+    const { bvn } = req.body;
+    const { image } = req.file;
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ message: "Something went wrong, try again later", success: false });
+    }
+    const updatedUser = await User.findByIdAndUpdate(
+      req.params.userId,
+      { 
+        bvn, 
+        image,
+        isVerified: true
+      },
+      { new: true }
+    );
+    const isVerified = updatedUser.isVerified;
+    if (!isVerified) {
+      return res.status(404).json({ message: "Something went wrong, try again later", success: false });
+    }
+    res.status(201).json({
+      message: "BVN verified successfully",
+      success: true,
+      isVerified
+    });
+  }
+  catch(error) {
+    console.error(error);
+    res.status(500).json({ message: "Something went wrong, try again later", success: false });
+  }
+}
+
 const updatePassword = async (req, res) => {
   try {
     const { oldPassword, newPassword } = req.body;
     const user = await User.findById(req.params.userId);
     if (!user) {
-      return res.status(404).json({ message: "User not found", success: false });
+      return res.status(404).json({ message: "Something went wrong, try again later", success: false });
     }
     const isMatch = await bcrypt.compare(oldPassword, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Old password is incorrect", success: false });
+      return res.status(400).json({ message: "Invalid credential", success: false });
     }
     const saltRounds = 5;
     const hashedPassword = await bcrypt.hash(newPassword, saltRounds);
@@ -74,7 +108,7 @@ const updatePassword = async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Internal server error", success: false });
+    res.status(500).json({ message: "Something went wrong, try again later", success: false });
   }
 };
 
@@ -83,5 +117,6 @@ const updatePassword = async (req, res) => {
 module.exports = {
   getUser,
   updateUser,
+  verifyBVN,
   updatePassword
 };

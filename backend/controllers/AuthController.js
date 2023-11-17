@@ -51,6 +51,7 @@ const signin = async (req, res, next) => {
       return res.json({ message: "Incorrect password or email", success: false });
     }
     const userId = user._id;
+    const isVerified = user.isVerified;
     const token = createSecretToken(userId);
     const cookieTime = parseInt(process.env.COOKIE_TIME, 10);
     res
@@ -68,6 +69,7 @@ const signin = async (req, res, next) => {
         message: "User signed in successfully",
         success: true,
         userId,
+        isVerified,
         token
       });
     next();

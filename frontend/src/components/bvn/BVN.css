@@ -1,0 +1,58 @@
+.bvnform {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border: 2px solid #3084a4ff;
+	background-color: #3084a4ff;
+	color: white;
+	min-height: 60vh;
+	padding: 20px;
+	margin: 20px;
+	border-radius: 8px;
+	box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.7);
+}
+
+.bvnform h2  {
+	margin-top: 60px;
+	margin-bottom: 10px;
+	
+}
+
+.bvnform p {
+	margin-top: 8px;
+	margin-bottom: 30px;
+}
+
+.bvn-form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.bvn-form input {
+	margin-bottom: 15px;
+	border: 1px solid #3084a4ff;
+	border-radius: 8px;
+	width: 150%;
+	padding: 10px 20px 10px 20px;
+	text-align: center;
+}
+
+.bvn-form button {
+	font-size: 15px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    line-height: 1.2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    height: 40px;
+	font-weight: 600;
+    background: #2b454eff;
+    background: -webkit-linear-gradient(to left, #21d4fd, #b721ff);
+    background: -o-linear-gradient(to left, #21d4fd, #b721ff);
+    background: -moz-linear-gradient(to left, #21d4fd, #b721ff);
+    background: linear-gradient(to left, #21d4fd, #b721ff);
+}

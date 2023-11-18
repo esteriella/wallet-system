@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { toast } from "react-toastify";
+import "./BVN.css";
 
 const api = process.env.REACT_APP_API;
 
@@ -46,8 +47,9 @@ function BVNForm() {
   }
 
   return (
-    <section className="fundwallet">
-      <form className="fund-form" onSubmit={handleSubmit(onSubmit)}>
+    <section className="bvnform">
+      <form className="bvn-form" onSubmit={handleSubmit(onSubmit)}>
+        <h2>Enter your BVN</h2>
         <input {...register("bvn")} type="text" placeholder="BVN" required />
         <input
           {...register("image")}
@@ -56,8 +58,8 @@ function BVNForm() {
           required
         />
         <button type="submit">Submit</button>
-        {errors.bvn && <p>Please enter a valid BVN</p>}
-        {errors.image && <p>Please upload an image</p>}
+        {errors.bvn && <p className="">Please enter a valid BVN</p>}
+        {errors.image && <p className="">Please upload an image</p>}
       </form>
     </section>
   );

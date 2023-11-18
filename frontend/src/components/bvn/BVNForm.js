@@ -50,7 +50,7 @@ function BVNForm() {
     <section className="bvnform">
       <form className="bvn-form" onSubmit={handleSubmit(onSubmit)}>
         <h2>Enter your BVN</h2>
-        <input {...register("bvn")} type="text" placeholder="BVN" required />
+        <input {...register("bvn")} type="text" placeholder="Enter your BVN" required />
         <input
           {...register("image")}
           type="file"

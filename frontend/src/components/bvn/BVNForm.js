@@ -14,9 +14,9 @@ function BVNForm() {
   const userId = localStorage.getItem("userId");
 
   async function onSubmit(data) {
-    // const formData = new FormData();
-    // formData.append('bvn', data.bvn);
-    // formData.append('image', data.image);
+    const formData = new FormData();
+    formData.append('bvn', data.bvn);
+    formData.append('image', data.image);
 
     const response = await axios.put(
       `${api}/verify-bvn/${userId}`,

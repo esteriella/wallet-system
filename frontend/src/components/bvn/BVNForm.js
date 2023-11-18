@@ -47,7 +47,7 @@ function BVNForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <input {...register('bvn')} type="text" placeholder="BVN" required />
-      <input {...register('image')} type="file" required />
+      <input {...register('image')} type="file" accept=".jpg, .jpeg, .png" required />
       <button type="submit">Submit</button>
       {errors.bvn && <p>Please enter a valid BVN</p>}
       {errors.image && <p>Please upload an image</p>}

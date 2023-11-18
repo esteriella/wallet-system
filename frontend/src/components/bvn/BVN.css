@@ -1,6 +1,7 @@
 .bvnform {
 	display: flex;
 	flex-direction: column;
+    justify-content: center;
 	align-items: center;
 	border: 2px solid #3084a4ff;
 	background-color: #3084a4ff;

@@ -14,16 +14,18 @@ function BVNForm() {
   const userId = localStorage.getItem("userId");
   const [image, setImage] = useState("")
 
-  async function onSubmit(data) {
+  async function onSubmit(e) {
+    e.preventDefault();
+
     const formData = new FormData();
-    formData.append('bvn', data.bvn);
-    formData.append('image', data.image);
+    formData.append('bvn', bvn);
+    formData.append('image', image);
 
     const response = await axios.put(
       `${api}/verify-bvn/${userId}`,
       {
-        bvn: data.bvn,
-        image: data.image
+        bvn: bvn,
+        image: image
       },
       {
         withCredentials: true,
@@ -47,17 +49,22 @@ function BVNForm() {
     }, 5000);
   }
 
-  function convertToBase64(e) {
-    console.log(e);
-    var reader = new FileReader();
-    reader.readAsDataURL(e.target.files[0]);
-    reader.onload = () => {
-      console.log(reader.result);
-      setImage(reader.result)
-    };
-    reader.onerror = error => {
-      console.log("error: ", error);
-    };
+  // function convertToBase64(e) {
+  //   console.log(e);
+  //   var reader = new FileReader();
+  //   reader.readAsDataURL(e.target.files[0]);
+  //   reader.onload = () => {
+  //     console.log(reader.result);
+  //     setImage(reader.result)
+  //   };
+  //   reader.onerror = error => {
+  //     console.log("error: ", error);
+  //   };
+  // }
+
+  const onInputChange = (e) => {
+    console.log(e.target.files[0]);
+    setImage(e.target.files[0])
   }
 
   return (
@@ -69,7 +76,8 @@ function BVNForm() {
           {...register("image")}
           type="file"
           accept="image/*"
-          onChange={convertToBase64}
+          // onChange={convertToBase64}
+          onChange={onInputChange}
           required
         />
         {image == "" || image == null? "" : <img width={100} height={100} src={image} /> }

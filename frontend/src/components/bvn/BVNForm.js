@@ -80,7 +80,7 @@ function BVNForm() {
           onChange={onInputChange}
           required
         />
-        {image == "" || image == null? "" : <img width={100} height={100} src={image} /> }
+        {image == "" || image == null? "" : <img className="image" width={100} height={100} src={image} /> }
         
         <button type="submit">Submit</button>
         {errors.bvn && <p className="">Please enter a valid BVN</p>}

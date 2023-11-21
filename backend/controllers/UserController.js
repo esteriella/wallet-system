@@ -65,7 +65,7 @@ const verifyBVN = async (req, res) => {
         bvn, 
         image,
         isVerified: true
-      },
+      }, 
       { new: true }
     );
     const isVerified = updatedUser.isVerified;

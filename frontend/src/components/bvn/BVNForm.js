@@ -1,5 +1,5 @@
 // BVNForm.js
-import React from "react";
+import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -12,6 +12,7 @@ function BVNForm() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
+  const [image, setImage] = useState("")
 
   async function onSubmit(data) {
     const formData = new FormData();
@@ -46,6 +47,19 @@ function BVNForm() {
     }, 5000);
   }
 
+  function convertToBase64(e) {
+    console.log(e);
+    var reader = new FileReader();
+    reader.readAsDataURL(e.target.files[0]);
+    reader.onload = () => {
+      console.log(reader.result);
+      setImage(reader.result)
+    };
+    reader.onerror = error => {
+      console.log("error: ", error);
+    };
+  }
+
   return (
     <section className="bvnform">
       <form className="bvn-form" onSubmit={handleSubmit(onSubmit)}>
@@ -54,9 +68,12 @@ function BVNForm() {
         <input
           {...register("image")}
           type="file"
-          accept=".jpg, .jpeg, .png"
+          accept="image/*"
+          onChange={convertToBase64}
           required
         />
+        {image == "" || image == null? "" : <img width={100} height={100} src={image} /> }
+        
         <button type="submit">Submit</button>
         {errors.bvn && <p className="">Please enter a valid BVN</p>}
         {errors.image && <p className="">Please upload an image</p>}

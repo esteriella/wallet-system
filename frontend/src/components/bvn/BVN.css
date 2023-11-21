@@ -13,15 +13,9 @@
 	box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.7);
 }
 
-
-.image {
-    margin-bottom: 10;
-}
 .bvnform h2  {
 	margin-top: 60px;
 	margin-bottom: 10px;
-    
-	
 }
 
 .bvnform p {
@@ -45,6 +39,7 @@
 }
 
 .bvn-form button {
+    margin-top: 6px;
 	font-size: 15px;
     border: none;
     border-radius: 10px;

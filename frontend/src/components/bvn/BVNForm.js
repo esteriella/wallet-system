@@ -22,7 +22,7 @@ function BVNForm() {
     formData.append('image', image);
 
     const response = await axios.put(
-      `${api}/verify-bvn/${userId}`,
+      `${api}/user/verify-bvn/${userId}`,
       {
         bvn: bvn,
         image: image

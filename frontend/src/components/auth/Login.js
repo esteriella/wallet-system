@@ -9,10 +9,14 @@ import Loader from '../shared/Loader';
 
 const api = process.env.REACT_APP_API;
 
+console.log('REACT_APP_SECRETS_TIME:', process.env.REACT_APP_SECRETS_TIME);
 const cookieTime = parseInt(process.env.REACT_APP_SECRETS_TIME, 10);
+console.log('cookieTime:', cookieTime);
+
+
 
 function Login() {
-  const [cookies, setCookie] = useCookies(['token']);
+  const [cookies, setCookies] = useCookies(['token']);
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     email: "",
@@ -40,9 +44,15 @@ function Login() {
       position: "bottom-left"
     });
 
+  const handleInfo = msg =>
+  toast.info(msg,{
+    position: "top-right"
+  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+  
     try {
       const { data } = await axios.post(
         `${api}/auth/signin`,
@@ -51,17 +61,19 @@ function Login() {
         },        
         { withCredentials: true }
       );
-
-      const { message, success, userId, isVerified, token} = data;
+  
+      const { message, success, userId, isVerified, token } = data;
+      
       if (success) {        
-        setCookie('token', token, {
+        // Log the value of cookieTime
+        console.log('cookieTime:', cookieTime);
+  
+        setCookies('token', token, {
           path: '/',
-          expires: new Date(
-            Date.now() + cookieTime 
-          ),
+          expires: new Date(Date.now() + cookieTime),
           sameSite: 'none', 
           secure: true,
-          httpOnly: false,
+          httpOnly: true,
         });
         localStorage.setItem("userId", userId);
         localStorage.setItem("isVerified", isVerified);
@@ -73,7 +85,7 @@ function Login() {
           }, 1000);
         } 
         else {          
-          handleError("Please verify your bvn");  
+          handleInfo("Please verify your bvn");  
           setTimeout(() => {    
             navigate('/bvn');
           }, 1000);

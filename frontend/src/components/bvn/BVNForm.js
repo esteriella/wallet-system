@@ -14,18 +14,17 @@ function BVNForm() {
   const userId = localStorage.getItem("userId");
   const [image, setImage] = useState("")
 
-  async function onSubmit(e) {
-    e.preventDefault();
+  async function onSubmit(data) {
 
     const formData = new FormData();
-    formData.append('bvn', bvn);
-    formData.append('image', image);
+    formData.append('bvn', data.bvn);
+    formData.append('image', data.image);
 
     const response = await axios.put(
       `${api}/user/verify-bvn/${userId}`,
       {
-        bvn: bvn,
-        image: image
+        bvn: data.bvn,
+        image: data.image
       },
       {
         withCredentials: true,
@@ -80,7 +79,7 @@ function BVNForm() {
           onChange={onInputChange}
           required
         />
-        {image == "" || image == null? "" : <img className="image" width={100} height={100} src={image} /> }
+        {image === "" || image === null? "" : <img className="image" width={100} height={100} src={image} alt="" /> }
         
         <button type="submit">Submit</button>
         {errors.bvn && <p className="">Please enter a valid BVN</p>}

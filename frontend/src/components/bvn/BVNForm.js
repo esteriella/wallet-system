@@ -14,39 +14,75 @@ function BVNForm() {
   const userId = localStorage.getItem("userId");
   const [image, setImage] = useState("")
 
-  async function onSubmit(data) {
+  // async function onSubmit(data) {
 
+  //   const formData = new FormData();
+  //   formData.append('bvn', data.bvn);
+  //   formData.append('image', data.image);
+
+  //   const response = await axios.put(
+  //     `${api}/user/verify-bvn/${userId}`,
+  //     {
+  //       bvn: data.bvn,
+  //       image: data.image
+  //     },
+  //     {
+  //       withCredentials: true,
+  //       headers: {
+  //         Accept: "application/json",
+  //         "Content-Type": "application/json",
+  //         Authorization: "Bearer " + localStorage.getItem("token")
+  //       }
+  //     }
+  //   );
+
+  //   const { success, message, isVerified } = response.data;
+  //   if (!success) {
+  //     toast.error(message);
+  //     return;
+  //   }
+  //   toast.success(message);
+  //   localStorage.setItem("isVerified", isVerified);
+  //   setTimeout(() => {
+  //     navigate("/dashboard", { replace: true });
+  //   }, 5000);
+  // }
+
+  async function onSubmit(data) {
     const formData = new FormData();
     formData.append('bvn', data.bvn);
     formData.append('image', data.image);
-
-    const response = await axios.put(
-      `${api}/user/verify-bvn/${userId}`,
-      {
-        bvn: data.bvn,
-        image: data.image
-      },
-      {
-        withCredentials: true,
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token")
+  
+    try {
+      const response = await axios.put(
+        `${api}/user/verify-bvn/${userId}`,
+        formData,  // Pass formData directly as the second argument
+        {
+          withCredentials: true,
+          headers: {
+            Accept: 'application/json',
+            Authorization: 'Bearer ' + localStorage.getItem('token')
+          }
         }
+      );
+  
+      const { success, message, isVerified } = response.data;
+      if (!success) {
+        toast.error(message);
+        return;
       }
-    );
-
-    const { success, message, isVerified } = response.data;
-    if (!success) {
-      toast.error(message);
-      return;
+      toast.success(message);
+      localStorage.setItem('isVerified', isVerified);
+      setTimeout(() => {
+        navigate('/dashboard', { replace: true });
+      }, 5000);
+    } catch (error) {
+      // Handle axios errors here
+      console.error('Axios error:', error);
+      // You might want to add additional error handling logic here
     }
-    toast.success(message);
-    localStorage.setItem("isVerified", isVerified);
-    setTimeout(() => {
-      navigate("/dashboard", { replace: true });
-    }, 5000);
   }
+  
 
   // function convertToBase64(e) {
   //   console.log(e);

@@ -110,8 +110,6 @@ const verifyBVN = async (req, res) => {
   try { 
     const { bvn } = req.body;
     console.log(bvn);
-    const { image } = req.file;
-    console.log(image)
     const user = await User.findById(req.params.userId);
 
     if (!user) {
@@ -120,7 +118,7 @@ const verifyBVN = async (req, res) => {
 
     const updatedUser = await User.findByIdAndUpdate(
       req.params.userId,
-      { bvn, image, isVerified: true },
+      { bvn, isVerified: true },
       { new: true }
     );
 

@@ -24,9 +24,6 @@ const userSchema = new mongoose.Schema({
     type: Number,
     unique: true
   },
-  image: {
-    type: String,
-  },
   password: {
     type: String,
     required: [true, "Your password is required"],

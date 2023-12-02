@@ -10,6 +10,7 @@ function Navbar() {
   const logout = () => {
     localStorage.removeItem("userId");
     localStorage.removeItem("token");
+    localStorage.removeItem("isVerified");
     navigate("/", { replace: true });
   };
 

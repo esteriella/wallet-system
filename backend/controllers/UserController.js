@@ -16,41 +16,6 @@ const getUser = async (req, res) => {
   }
 };
 
-// const updateUser = async (req, res) => {
-//   try {
-//     // Destructure the request body for cleaner code
-//     const { firstName, lastName, email } = req.body;
-
-//     // Create an object with the fields to update
-//     const updatedFields = {
-//       firstName,
-//       lastName,
-//       email,
-//     };
-
-//     // Update the user document and return the updated user
-//     const user = await User.findByIdAndUpdate(
-//       req.params.userId,
-//       updatedFields,
-//       { new: true }
-//     ).select("-password");
-
-//     if (!user) {
-//       // Handle the case where the user is not found
-//       return res.status(404).json({ message: "User not found" });
-//     }
-
-//     // Respond with the updated user data
-//     res.status(201).json({
-//       message: "Profile updated successfully",
-//       success: true
-//     });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Internal server error", success: true });
-//   }
-// };
-
 const updateUser = async (req, res) => {
   try {
     // ... (existing code)
@@ -72,39 +37,6 @@ const updateUser = async (req, res) => {
   }
 };
 
-
-// const verifyBVN = async (req, res) => {
-//   try{
-//     const { bvn } = req.body;
-//     const { image } = req.file;
-//     const user = await User.findById(req.params.userId);
-//     if (!user) {
-//       return res.status(404).json({ message: "Something went wrong, try again later", success: true });
-//     }
-//     const updatedUser = await User.findByIdAndUpdate(
-//       req.params.userId,
-//       { 
-//         bvn, 
-//         image,
-//         isVerified: true
-//       }, 
-//       { new: true }
-//     );
-//     const isVerified = updatedUser.isVerified;
-//     if (!isVerified) {
-//       return res.status(404).json({ message: "Something went wrong, try again later", success: false });
-//     }
-//     res.status(201).json({
-//       message: "BVN verified successfully",
-//       success: true,
-//       isVerified
-//     });
-//   }
-//   catch(error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Something went wrong, try again later", success: false });
-//   }
-// }
 
 const verifyBVN = async (req, res) => {
   try { 

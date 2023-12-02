@@ -57,7 +57,7 @@ const signin = async (req, res, next) => {
     res
       .cookie("token", token, {
         expires: new Date(
-          Date.now() + 10 * 24 * 60 * 60 * 1000 
+          Date.now() + cookieTime
         ),
         sameSite: "none",
         secure: true,

@@ -56,7 +56,10 @@ function BVNForm() {
     try {
       const response = await axios.put(
         `${api}/user/verify-bvn/${userId}`,
-        formData,  // Pass formData directly as the second argument
+        {
+          bvn:data.bvn,
+          image: data.image
+        },
         {
           withCredentials: true,
           headers: {

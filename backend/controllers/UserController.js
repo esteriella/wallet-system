@@ -107,10 +107,11 @@ const updateUser = async (req, res) => {
 // }
 
 const verifyBVN = async (req, res) => {
-  try {
-    const { bvn, image } = req.body;
+  try { 
+    const { bvn } = req.body;
     console.log(bvn);
-    // const { image } = req.file;
+    const { image } = req.file;
+    console.log(image)
     const user = await User.findById(req.params.userId);
 
     if (!user) {
